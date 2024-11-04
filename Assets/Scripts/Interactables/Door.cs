@@ -14,21 +14,35 @@ public class Door : Interactable
     void Start()
     {
         _startingYRot = transform.parent.transform.rotation.eulerAngles.y;
-        if(_startingYRot == 0) _startingYRot = 360;
+        if(_startingYRot == 0) _startingYRot = 360f;
         _openedRotationY = _startingYRot - 90;
-        if(_openedRotationY < 0) _openedRotationY = 1f;
     }
 
     void Update()
     {
         if(_opening)
         {
+            Debug.Log("Euler: " + transform.parent.transform.rotation.eulerAngles.y);
             transform.parent.transform.Rotate(Vector3.down * _rotationSpeed * Time.deltaTime);
-            if(transform.parent.transform.rotation.eulerAngles.y <= _openedRotationY)
+
+            if(_openedRotationY < 2)
             {
-                transform.parent.transform.rotation = Quaternion.Euler(0, _openedRotationY, 0);
-                _opening = false;
+                float newOpenedRotation = 0;
+                if(transform.parent.transform.rotation.eulerAngles.y <= 1f)
+                {
+                    transform.parent.transform.rotation = Quaternion.Euler(0, newOpenedRotation, 0);
+                    _opening = false;
+                }
             }
+            else
+            {
+                if(transform.parent.transform.rotation.eulerAngles.y <= _openedRotationY)
+                {
+                    transform.parent.transform.rotation = Quaternion.Euler(0, _openedRotationY, 0);
+                    _opening = false;
+                }
+            }
+
         }
 
         if(_closing)
@@ -36,14 +50,26 @@ public class Door : Interactable
             Debug.Log("Euler: " + transform.parent.transform.rotation.eulerAngles.y);
             transform.parent.transform.Rotate(Vector3.up * _rotationSpeed * Time.deltaTime);
 
-            float rotY = _startingYRot;
-            if(rotY == 360) rotY = 359f;
-
-            if(transform.parent.transform.rotation.eulerAngles.y >= rotY)
+            if(_openedRotationY < 2)
             {
-                transform.parent.transform.rotation = Quaternion.Euler(0, rotY, 0);
-                _closing = false;
+                if(transform.parent.transform.rotation.eulerAngles.y >= _startingYRot)
+                {
+                    transform.parent.transform.rotation = Quaternion.Euler(0, _startingYRot, 0);
+                    _closing = false;
+                }
             }
+            else
+            {
+                if(transform.parent.transform.rotation.eulerAngles.y >= _startingYRot - 1)
+                {
+                    float startingYRotTransformed = _startingYRot;
+                    if(_startingYRot == 360) startingYRotTransformed = 0;
+
+                    transform.parent.transform.rotation = Quaternion.Euler(0, startingYRotTransformed, 0);
+                    _closing = false;
+                }
+            }
+
         }
     }
 
@@ -74,8 +100,9 @@ public class Door : Interactable
     private void OpenOrClose()
     {
         float rotY = transform.parent.transform.rotation.eulerAngles.y;
-        if(rotY == 0) rotY = 360f; 
+        if(rotY == 0) rotY = 360f;
 
+        Debug.LogWarning("rot: " + rotY + " | start: " + _startingYRot);
         if(rotY == _startingYRot)
             _opening = true;
         else
