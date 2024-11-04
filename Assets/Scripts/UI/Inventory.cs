@@ -21,6 +21,18 @@ public class Inventory : MonoSingleton<Inventory>
             _itemSlots[index].AssignItemToSlot(itemData);
     }
 
+    public int GetSelectedItemId()
+    {
+        int res = -1;
+
+        if(_itemSlots[_selectedSlot].IsEmpty() == false)
+        {
+            res = _itemSlots[_selectedSlot].itemData.itemId;
+        }
+
+        return res;
+    }
+
     public void DropItem(Vector3 position)
     {
         if(_itemSlots[_selectedSlot].IsEmpty() == false)

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5491095494801505849}
   - component: {fileID: 2485959874373276470}
   m_Layer: 6
-  m_Name: ItemPlaceholder
+  m_Name: ItemKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b99ed4d2068b24db587c00acbdee78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemData: {fileID: 11400000, guid: 1247ef87e79228447af332f08b2806c0, type: 2}
+  _itemData: {fileID: 11400000, guid: b8b35085a0a98d6488f7b426e15d51b8, type: 2}
 --- !u!33 &6368712225782774928
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -76,7 +76,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0ce5f5c51c9eae14ebafc1d0aeeffcec, type: 2}
+  - {fileID: 2100000, guid: 36c0bfdbf2df234449e84e12b9f9ec73, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

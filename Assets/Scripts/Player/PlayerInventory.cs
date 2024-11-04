@@ -22,7 +22,7 @@ public class PlayerInventory : MonoBehaviour
     {
         CheckForCollectables();
         CursorLocking();
-        ObjectRange();
+        ObjectPicking();
         MouseScroll();
         DropItem();
     }
@@ -38,7 +38,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    private void ObjectRange()
+    private void ObjectPicking()
     {
         if(_objectOnRange)
         {
