@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    [SerializeField] private Transform _droppingPoint;
     [SerializeField] private bool _objectOnRange;
     private GameObject _collectableGameobject;
     [Header("Raycasting")]
@@ -21,26 +22,9 @@ public class PlayerInventory : MonoBehaviour
     {
         CheckForCollectables();
         CursorLocking();
-
-        if(_objectOnRange)
-        {
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                Collectable collectableScr = _collectableGameobject.GetComponent<Collectable>();
-                Inventory.Instance.Collect(collectableScr.GetItemData(), _collectableGameobject);
-            }
-        }
-
-        if(Input.mouseScrollDelta.y > 0)
-        {
-            Debug.Log("Up | T: " + Time.time);
-            UIManager.Instance.ChangeSlot(true);
-        }
-        else if(Input.mouseScrollDelta.y < 0)
-        {
-            Debug.Log("Down | T: " + Time.time);
-            UIManager.Instance.ChangeSlot(false);
-        }
+        ObjectRange();
+        MouseScroll();
+        DropItem();
     }
 
     private void CursorLocking()
@@ -51,6 +35,40 @@ public class PlayerInventory : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
             else
                 Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    private void ObjectRange()
+    {
+        if(_objectOnRange)
+        {
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                Collectable collectableScr = _collectableGameobject.GetComponent<Collectable>();
+                Inventory.Instance.Collect(collectableScr.GetItemData(), _collectableGameobject);
+            }
+        }
+    }
+
+    private void MouseScroll()
+    {
+        if(Input.mouseScrollDelta.y > 0)
+        {
+            // Debug.Log("Up | T: " + Time.time);
+            UIManager.Instance.ChangeSlot(true);
+        }
+        else if(Input.mouseScrollDelta.y < 0)
+        {
+            // Debug.Log("Down | T: " + Time.time);
+            UIManager.Instance.ChangeSlot(false);
+        }
+    }
+
+    private void DropItem()
+    {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            Inventory.Instance.DropItem(_droppingPoint.position);
         }
     }
 

@@ -6,19 +6,19 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
     [SerializeField] private Image _image;
-    private ItemData _itemData = null;
+    public ItemData itemData {get; private set;} = null;
 
     public void AssignItemToSlot(ItemData item)
     {
         _image.sprite = item.itemImage;
         _image.gameObject.SetActive(true);
-        _itemData = item;
+        itemData = item;
     }
 
     public void RemoveItemFromSlot()
     {
         _image.gameObject.SetActive(false);
-        _itemData = null;
+        itemData = null;
     }
 
     public void Selection(bool value)
@@ -33,5 +33,5 @@ public class ItemSlot : MonoBehaviour
         }
     }
 
-    public bool IsEmpty() => _itemData == null;
+    public bool IsEmpty() => itemData == null;
 }

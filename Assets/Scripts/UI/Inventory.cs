@@ -6,7 +6,7 @@ public class Inventory : MonoSingleton<Inventory>
 {
     [SerializeField] private ItemSlot[] _itemSlots = new ItemSlot[5];
     private ItemData[] _itemData = new ItemData[5];
-    private int _selectedSlot = 0;
+    public int _selectedSlot {get; private set;} = 0;
 
     void Start()
     {
@@ -19,6 +19,15 @@ public class Inventory : MonoSingleton<Inventory>
             _itemSlots[index].RemoveItemFromSlot();
         else
             _itemSlots[index].AssignItemToSlot(itemData);
+    }
+
+    public void DropItem(Vector3 position)
+    {
+        if(_itemSlots[_selectedSlot].IsEmpty() == false)
+        {
+            Instantiate(_itemSlots[_selectedSlot].itemData.itemPrefab, position, Quaternion.identity);
+            UpdateInventorySlot(_selectedSlot, null);
+        }
     }
 
     public void ChangeSlot(bool up)
