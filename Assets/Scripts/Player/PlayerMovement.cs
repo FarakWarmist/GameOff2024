@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private Ray[] _rays = new Ray[5];
     private List<int> _currentCollisionInstanceIds = new List<int>();
     [SerializeField] private bool _isGroundedRay;
+    [SerializeField] private Vector3 _groundNormal;
     [Header("STAMINA")]
     [SerializeField] private float _stamina = 100f;
     private float _maxStamina;
@@ -95,6 +96,15 @@ public class PlayerMovement : MonoBehaviour
                 _movementVector.x *= _runningSpeedMultiplier;
                 _movementVector.z *= _runningSpeedMultiplier;
             }
+
+            if(_groundNormal.y < 0.95f)
+            {
+                
+            }
+            else if(_isGrounded)
+            {
+                _movementVector.y = 0;
+            }
         }
         else
         {
@@ -109,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         _rb.velocity = transform.TransformDirection(_movementVector);
+        _rb.velocity.Normalize();
 
         StaminaHandler();
     }
@@ -150,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(_currentCollisionInstanceIds.Count > 0)
         {
-            _movementVector.y = 0;
+            // _movementVector.y = 0;
             _isGrounded = true;
         }
     }
@@ -213,6 +224,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if(_raycastHits[i].transform.CompareTag("Ground") && _raycastHits[i].distance < _rayDistance)
                 {
+                    if(i == 0) _groundNormal = _raycastHits[i].normal;
                     // Debug.Log("Distance: " + ((_raycastHits[i].collider.transform.position.y - _rayOrigins[i].y) * -1).ToString());
                     return true;
                 }
