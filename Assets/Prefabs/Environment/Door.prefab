@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _locked: 1
-  _rotationSpeed: 90
+  _rotationSpeed: 120
   _startingYRot: 0
   _openedRotationY: 0
   _opening: 0

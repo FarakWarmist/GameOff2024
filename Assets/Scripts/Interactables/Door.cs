@@ -102,7 +102,7 @@ public class Door : Interactable
         float rotY = transform.parent.transform.rotation.eulerAngles.y;
         if(rotY == 0) rotY = 360f;
 
-        Debug.LogWarning("rot: " + rotY + " | start: " + _startingYRot);
+        // Debug.LogWarning("rot: " + rotY + " | start: " + _startingYRot);
         if(rotY == _startingYRot)
             _opening = true;
         else
