@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoSingleton<UIManager>
 {
     [SerializeField] private Image _staminaBarImage;
     [SerializeField] private Inventory _inventory;
+    [SerializeField] private TMP_Text _dialogueText;
     public void UpdateStaminaBar(float stamina, float maxStamina)
     {
         if(stamina == maxStamina)
@@ -20,4 +22,15 @@ public class UIManager : MonoSingleton<UIManager>
     }
 
     public void ChangeSlot(bool up) => _inventory.ChangeSlot(up);
+
+    public void UpdateDialogueText(string text)
+    {
+        if(_dialogueText.transform.parent.gameObject.activeSelf == false) SetDialogueActivity(true);
+
+        _dialogueText.text = text;
+    }
+
+    public string GetCurrentDialogueText() => _dialogueText.text;
+
+    public void SetDialogueActivity(bool value) => _dialogueText.transform.parent.gameObject.SetActive(value);
 }
