@@ -17,7 +17,7 @@ public class UIManager : MonoSingleton<UIManager>
         {
             _staminaBarImage.transform.parent.gameObject.SetActive(true);
             _staminaBarImage.fillAmount = stamina / maxStamina;
-            Debug.Log("Fill Amount: " + stamina / maxStamina);
+            // Debug.Log("Fill Amount: " + stamina / maxStamina);
         }
     }
 
