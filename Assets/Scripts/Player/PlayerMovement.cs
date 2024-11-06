@@ -122,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
         _rb.velocity.Normalize();
 
         StaminaHandler();
+        GameManager.Instance.SetPlayerPosition(transform.position);
     }
 
     private void StaminaHandler()

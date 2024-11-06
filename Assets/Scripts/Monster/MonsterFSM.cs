@@ -15,7 +15,7 @@ public class MonsterFSM : MonoBehaviour
     {
         Idle, //Not moving a lot and just standing
         Chasing, //Going towards the player
-        Roaming, //Walking slowly around the place
+        Roaming, //Walking slowly around the place, maybe going to specific places from time to time
         Investigating, //Goes toward a sound or thing that caughts its attention
         SearchingPlayer//Goes to the last place it saw the player
     };
@@ -29,6 +29,8 @@ public class MonsterFSM : MonoBehaviour
     [SerializeField] private float _idleDistance = 3.5f;
     private float _idleTimer;
 
+    //*ROAMING VARIABLES
+
     //* INVESTIGATING VARIABLES
     [Header("INVESTIGATING")]
     [SerializeField] private float _investigationTime;
@@ -37,6 +39,10 @@ public class MonsterFSM : MonoBehaviour
     private float _investigationTimer;
     private Vector3 _investigationPosition;
 
+    //* CHASING VARIABLES
+    [SerializeField] private bool _seeingPlayer;
+
+    //* SEARCHING PLAYER
 
 
     void Start()
@@ -110,6 +116,8 @@ public class MonsterFSM : MonoBehaviour
     {
 
     }
+
+    public void SetSeeingPlayer(bool value) => _seeingPlayer = value;
 
     private void Roaming()
     {
