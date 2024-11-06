@@ -43,6 +43,9 @@ public class MonsterFSM : MonoBehaviour
     [SerializeField] private bool _seeingPlayer;
 
     //* SEARCHING PLAYER
+    [SerializeField] private float _searchingTime = 10f;
+    private float _searchingTimer;
+    private bool _onSearchingPoint;
 
 
     void Start()
@@ -91,6 +94,11 @@ public class MonsterFSM : MonoBehaviour
                 SearchingPlayer();
             break;
         }
+
+        if(_seeingPlayer && _currentMonsterState != MonsterState.Chasing)
+        {
+            _currentMonsterState = MonsterState.Chasing;
+        }
     }
 
     private void Idle()
@@ -114,7 +122,14 @@ public class MonsterFSM : MonoBehaviour
 
     private void Chasing()
     {
-
+        if(_seeingPlayer)
+        {
+            _navAgent.SetDestination(GameManager.Instance.playerPosition);
+        }
+        else
+        {
+            _currentMonsterState = MonsterState.SearchingPlayer;
+        }
     }
 
     public void SetSeeingPlayer(bool value) => _seeingPlayer = value;
@@ -164,6 +179,20 @@ public class MonsterFSM : MonoBehaviour
 
     private void SearchingPlayer()
     {
+        float distance = Vector3.Distance(_navAgent.destination, transform.position);
 
+        if(_onSearchingPoint)
+        {
+            if(_searchingTimer <= Time.time)
+            {
+                _onSearchingPoint = false;
+                _currentMonsterState = MonsterState.Idle;
+            }
+        }
+        if(distance <= 2.5f)
+        {
+            _onSearchingPoint = true;
+            _searchingTimer = Time.time + _searchingTime;
+        }
     }
 }
