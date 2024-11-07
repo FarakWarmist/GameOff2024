@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _rb;
     private Vector3 _movementVector;
     private bool _isGrounded;
+    private bool _canMove = true;
+    [SerializeField] private CapsuleCollider _playerCollider;
     [Header("PHYSICS")]
     [SerializeField] private float _speed;
     [SerializeField] private float _gravity;
@@ -50,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
         Initialize();
         _maxStamina = _stamina;
         _staminaRecoveryTimer = Time.time + _staminaRecoveryTime;
+
+        GameManager.Instance.SetPlayerMovementScript(this);
     }
 
     private void Initialize()
@@ -62,9 +66,12 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        _isGroundedRay = GroundDetection();
-        DebugRaycasts();
-        CalculateMovement();
+        if(_canMove)
+        {
+            _isGroundedRay = GroundDetection();
+            DebugRaycasts();
+            CalculateMovement();
+        }
         LookRotation();
         // Debug.Log("Movement Vector: " + _movementVector + " | Grounded: " + _isGrounded);
     }
@@ -123,6 +130,7 @@ public class PlayerMovement : MonoBehaviour
 
         StaminaHandler();
         GameManager.Instance.SetPlayerPosition(transform.position);
+        GameManager.Instance.SetPlayerRotation(transform.rotation);
     }
 
     private void StaminaHandler()
@@ -256,4 +264,17 @@ public class PlayerMovement : MonoBehaviour
             Debug.DrawRay(tempRayOrigins[i], Vector2.down * _rayDistance, Color.magenta);
         }
     }
+
+    public void SetPlayerColliderTrigger(bool value) => _playerCollider.isTrigger = value;
+    public void SetCanMove(bool value)
+    {
+        _canMove = value;
+        if(_canMove == false)
+        {
+            _movementVector = Vector3.zero;
+            _rb.velocity = Vector3.zero;
+        }
+    }
+    public void SetPlayerPosition(Vector3 pos) => this.transform.position = pos;
+    public void SetPlayerRotation(Quaternion rot) => this.transform.rotation = rot;
 }
