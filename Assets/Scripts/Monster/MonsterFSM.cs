@@ -13,9 +13,8 @@ public class MonsterFSM : MonoBehaviour
     [SerializeField] private float _speed = 12.5f;
     enum MonsterState
     {
-        Idle, //Not moving a lot and just standing
+        Idle, //It moves from time to time, and goes to specific places sometimes
         Chasing, //Going towards the player
-        Roaming, //Walking slowly around the place, maybe going to specific places from time to time
         Investigating, //Goes toward a sound or thing that caughts its attention
         SearchingPlayer//Goes to the last place it saw the player
     };
@@ -38,6 +37,12 @@ public class MonsterFSM : MonoBehaviour
     private bool _onInvestigationPoint;
     private float _investigationTimer;
     private Vector3 _investigationPosition;
+    [SerializeField] private GameObject _roamingPlacesObject;
+    [SerializeField] private List<Transform> _roamingPlaces = new List<Transform>();
+    [SerializeField] private float _minTimeToRoam = 35f;
+    [SerializeField] private float _maxTimeToRoam = 120f;
+    [SerializeField] private bool _isRoaming;
+    private float _roamingTimer;
 
     //* CHASING VARIABLES
     [SerializeField] private bool _seeingPlayer;
@@ -56,8 +61,15 @@ public class MonsterFSM : MonoBehaviour
         _navAgent.speed = _speed;
         _idleTimer = Time.time + GetIdleTime();
         _investigationTimer = Time.time + _investigationTime;
+        _roamingTimer = Time.time + UnityEngine.Random.Range(_minTimeToRoam, _maxTimeToRoam);
 
         PlayerTestNoise.OnNoiseMade += Noise;
+
+        foreach(Transform t in _roamingPlacesObject.GetComponentInChildren<Transform>())
+        {
+            Debug.Log("Roaming places list being populated");
+            _roamingPlaces.Add(t);
+        }
     }
 
     void OnDisable()
@@ -82,10 +94,6 @@ public class MonsterFSM : MonoBehaviour
                 Chasing();
             break;
 
-            case MonsterState.Roaming:
-                Roaming();
-            break;
-
             case MonsterState.Investigating:
                 Investigating();
             break;
@@ -103,16 +111,35 @@ public class MonsterFSM : MonoBehaviour
 
     private void Idle()
     {
-        if(_idleTimer <= Time.time)
+        if(_roamingTimer <= Time.time && _isRoaming == false)
         {
-            Vector3 currentPos = transform.position;
-            currentPos.x += UnityEngine.Random.Range(-_idleDistance, _idleDistance);
-            currentPos.z += UnityEngine.Random.Range(-_idleDistance, _idleDistance);
+            _isRoaming = true;
+            
+            _navAgent.SetDestination(_roamingPlaces[UnityEngine.Random.Range(0, _roamingPlaces.Count)].position);
+        }
 
-            if(NavMesh.SamplePosition(currentPos, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+        if(_isRoaming == false)
+        {
+            if(_idleTimer <= Time.time)
             {
-                _navAgent.SetDestination(currentPos);
-                _idleTimer = Time.time + GetIdleTime();
+                Vector3 currentPos = transform.position;
+                currentPos.x += UnityEngine.Random.Range(-_idleDistance, _idleDistance);
+                currentPos.z += UnityEngine.Random.Range(-_idleDistance, _idleDistance);
+
+                if(NavMesh.SamplePosition(currentPos, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+                {
+                    _navAgent.SetDestination(currentPos);
+                    _idleTimer = Time.time + GetIdleTime();
+                }
+            }
+        }
+        else
+        {
+            float distance = Vector3.Distance(_navAgent.destination, transform.position);
+            if(distance <= 2.5f)
+            {
+                _isRoaming = false;
+                _roamingTimer = Time.time + UnityEngine.Random.Range(_minTimeToRoam, _maxTimeToRoam);
             }
         }
     }
@@ -133,11 +160,6 @@ public class MonsterFSM : MonoBehaviour
     }
 
     public void SetSeeingPlayer(bool value) => _seeingPlayer = value;
-
-    private void Roaming()
-    {
-
-    }
 
     private void Investigating()
     {

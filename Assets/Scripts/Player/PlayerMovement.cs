@@ -232,7 +232,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        Debug.Log("Ground Detection: false | Time: " + Time.time);
+        // Debug.Log("Ground Detection: false | Time: " + Time.time);
         return false;
     }
 
