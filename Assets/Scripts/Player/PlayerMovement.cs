@@ -130,7 +130,6 @@ public class PlayerMovement : MonoBehaviour
 
         StaminaHandler();
         GameManager.Instance.SetPlayerPosition(transform.position);
-        GameManager.Instance.SetPlayerRotation(transform.rotation);
     }
 
     private void StaminaHandler()

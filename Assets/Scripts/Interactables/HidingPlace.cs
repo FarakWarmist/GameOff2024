@@ -52,7 +52,10 @@ public class HidingPlace : Interactable
                 float fracComplete = (Time.time - enteringStartTime) / _interpolationTime;
                 pMS.SetPlayerPosition(Vector3.Slerp(playerPositionWhenEntering, _hidingPoint.position, fracComplete));
                 if((enteringStartTime + _interpolationTime) < Time.time)
+                {
                     _positionInterpolated = true;
+                    GameManager.Instance.SetIsHiding(true);
+                }
             }
         }
 
@@ -65,6 +68,7 @@ public class HidingPlace : Interactable
                 pMS.SetPlayerColliderTrigger(false);
                 pMS.SetCanMove(true);
                 _isExiting = false;
+                GameManager.Instance.SetIsHiding(false);
             }
         }
     }

@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 public class MonsterFSM : MonoBehaviour
 {
@@ -46,6 +43,7 @@ public class MonsterFSM : MonoBehaviour
 
     //* CHASING VARIABLES
     [SerializeField] private bool _seeingPlayer;
+    [SerializeField] private bool _sawPlayerHiding;
 
     //* SEARCHING PLAYER
     [SerializeField] private float _searchingTime = 10f;
@@ -63,6 +61,7 @@ public class MonsterFSM : MonoBehaviour
         _investigationTimer = Time.time + _investigationTime;
         _roamingTimer = Time.time + UnityEngine.Random.Range(_minTimeToRoam, _maxTimeToRoam);
 
+        GameManager.OnHidingChanged += PlayerHidingChanged;
         PlayerTestNoise.OnNoiseMade += Noise;
 
         foreach(Transform t in _roamingPlacesObject.GetComponentInChildren<Transform>())
@@ -75,6 +74,7 @@ public class MonsterFSM : MonoBehaviour
     void OnDisable()
     {
         PlayerTestNoise.OnNoiseMade -= Noise;
+        GameManager.OnHidingChanged -= PlayerHidingChanged;
     }
 
     void Update()
@@ -155,7 +155,14 @@ public class MonsterFSM : MonoBehaviour
         }
         else
         {
-            _currentMonsterState = MonsterState.SearchingPlayer;
+            if(_sawPlayerHiding)
+            {
+                _navAgent.SetDestination(GameManager.Instance.playerPosition);
+            }
+            else
+            {
+                _currentMonsterState = MonsterState.SearchingPlayer;
+            }
         }
     }
 
@@ -216,5 +223,10 @@ public class MonsterFSM : MonoBehaviour
             _onSearchingPoint = true;
             _searchingTimer = Time.time + _searchingTime;
         }
+    }
+
+    private void PlayerHidingChanged(bool value)
+    {
+        _sawPlayerHiding = _seeingPlayer;
     }
 }
