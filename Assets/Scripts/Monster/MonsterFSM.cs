@@ -183,7 +183,7 @@ public class MonsterFSM : MonoBehaviour
         else
         {
             float distance = Vector3.Distance(_navAgent.destination, transform.position);
-            Debug.Log("Distance: " + distance);
+            // Debug.Log("Distance: " + distance);
             if(distance <= 2.5f)
             {
                 Debug.Log("On investigation point");

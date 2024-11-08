@@ -45,12 +45,12 @@ public class PlayerMonsterCloseCues : MonoBehaviour
             else
                 _filmGrain.intensity.Override(0.2f);
 
-            if(_lensDistortion.intensity.value < 0.7f)
+            if(_lensDistortion.intensity.value < 0.6f)
             {
                 _lensDistortion.intensity.Override(_lensDistortion.intensity.value + 0.6f * Time.deltaTime);
-                if(_lensDistortion.intensity.value > 0.7f)
+                if(_lensDistortion.intensity.value > 0.6f)
                 {
-                    _lensDistortion.intensity.Override(0.7f);
+                    _lensDistortion.intensity.Override(0.6f);
                 }
             }
         }

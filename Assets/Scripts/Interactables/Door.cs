@@ -109,4 +109,15 @@ public class Door : Interactable
             _closing = true;
     }
 
+    public void OpenDoor()
+    {
+        Debug.Log("Open Door | T: " + Time.time);
+        if(_opening) return;
+
+        float rotY = transform.parent.transform.rotation.eulerAngles.y;
+        if(rotY == 0) rotY = 360f;
+
+        if(rotY == _startingYRot) OpenOrClose();
+    }
+
 }
