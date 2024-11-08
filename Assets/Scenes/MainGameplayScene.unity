@@ -5925,6 +5925,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1685512262518908577}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &315298495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315298471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c8bed1e7cade834d878ebf8a4adf8ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startingFXChange: 10
+  _filmGrain: {fileID: 0}
+  _lensDistortion: {fileID: 0}
 --- !u!4 &318320117 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2535971832110125421, guid: 93693cf02de15b9409ec8678819198cb,
@@ -7284,7 +7299,7 @@ GameObject:
   - component: {fileID: 832575518}
   m_Layer: 0
   m_Name: Global Volume
-  m_TagString: Untagged
+  m_TagString: GlobalVolume
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16135,6 +16150,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 1
       addedObject: {fileID: 315298480}
+    - targetCorrespondingSourceObject: {fileID: 5754842079720365811, guid: 6659fba984882e0468ac8bc67ad6937f,
+        type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 315298495}
   m_SourcePrefab: {fileID: 100100000, guid: 6659fba984882e0468ac8bc67ad6937f, type: 3}
 --- !u!1001 &2946251456546279288
 PrefabInstance:

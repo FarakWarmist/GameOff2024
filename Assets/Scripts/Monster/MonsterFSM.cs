@@ -106,6 +106,8 @@ public class MonsterFSM : MonoBehaviour
         {
             _currentMonsterState = MonsterState.Chasing;
         }
+
+        GameManager.Instance.SetMonsterPosition(transform.position);
     }
 
     private void Idle()
