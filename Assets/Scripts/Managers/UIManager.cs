@@ -9,6 +9,7 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private Image _staminaBarImage;
     [SerializeField] private Inventory _inventory;
     [SerializeField] private TMP_Text _dialogueText;
+    [SerializeField] private TMP_Text _timerText;
     public void UpdateStaminaBar(float stamina, float maxStamina)
     {
         if(stamina == maxStamina)
@@ -33,4 +34,6 @@ public class UIManager : MonoSingleton<UIManager>
     public string GetCurrentDialogueText() => _dialogueText.text;
 
     public void SetDialogueActivity(bool value) => _dialogueText.transform.parent.gameObject.SetActive(value);
+
+    public void UpdateTimerText(string text) => _timerText.text = text;
 }
