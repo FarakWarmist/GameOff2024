@@ -66,7 +66,6 @@ public class MonsterFSM : MonoBehaviour
 
         foreach(Transform t in _roamingPlacesObject.GetComponentInChildren<Transform>())
         {
-            Debug.Log("Roaming places list being populated");
             _roamingPlaces.Add(t);
         }
     }
