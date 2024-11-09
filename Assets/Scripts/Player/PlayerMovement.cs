@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -29,6 +28,17 @@ public class PlayerMovement : MonoBehaviour
     private float _horizontalRot;
     private float _verticalRot;
     private Vector2 _cameraRotation;
+
+    [Header("HEAD BOB")]
+    [SerializeField] private float _normalCameraYPos = 0.45f;
+    [SerializeField] private float _omegaY = 5.0f;
+    [SerializeField] private float _headBobYOffset = 1.25f;
+    [SerializeField] private float _amplitudeYWalking = 0.1f;
+    [SerializeField] private float _amplitudeYRunning = 0.2f;
+    private Vector3 _cameraPosition;
+    private float _startingCameraYPos;
+    float index;
+
     [Header("GROUND DETECTION")]
     [SerializeField] private float _rayOffsetCenter;
     [SerializeField] private float _rayOffsetY;
@@ -52,6 +62,10 @@ public class PlayerMovement : MonoBehaviour
         Initialize();
         _maxStamina = _stamina;
         _staminaRecoveryTimer = Time.time + _staminaRecoveryTime;
+
+        _startingCameraYPos = Camera.main.transform.position.y;
+        _cameraPosition.x = Camera.main.transform.position.x;
+        _cameraPosition.z = Camera.main.transform.position.z;
 
         GameManager.Instance.SetPlayerMovementScript(this);
     }
@@ -80,6 +94,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _movementVector.x = Input.GetAxis("Horizontal") * _speed * Time.deltaTime * 100;
         _movementVector.z = Input.GetAxis("Vertical") * _speed * Time.deltaTime * 100;
+
+        HeadBob();
 
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -130,6 +146,45 @@ public class PlayerMovement : MonoBehaviour
 
         StaminaHandler();
         GameManager.Instance.SetPlayerPosition(transform.position);
+    }
+
+    private void HeadBob()
+    {
+        if(_movementVector != Vector3.zero)
+        {
+            CameraSine();
+        }
+        else
+        {
+            if(Camera.main.transform.position.y != _normalCameraYPos)
+            {
+                CameraSine();
+                if(Camera.main.transform.localPosition.y < (_normalCameraYPos + 0.025f) || Camera.main.transform.localPosition.y > (_normalCameraYPos - 0.025f))
+                {
+                    Vector3 camPos = Camera.main.transform.localPosition;
+                    camPos.y = _normalCameraYPos;
+                    Camera.main.transform.localPosition = camPos;
+                }
+            }
+        }
+    }
+
+    private void CameraSine()
+    {
+        index += Time.deltaTime;
+
+        float y;
+        if(_running)
+            y = Mathf.Abs (_amplitudeYRunning*Mathf.Sin (_omegaY*index));
+        else
+            y = Mathf.Abs (_amplitudeYWalking*Mathf.Sin (_omegaY*index));
+
+
+        y += _headBobYOffset;
+        _cameraPosition.y = y;
+        _cameraPosition.x = transform.localPosition.x;
+        _cameraPosition.z = transform.localPosition.z;
+        Camera.main.transform.position = _cameraPosition;
     }
 
     private void StaminaHandler()
