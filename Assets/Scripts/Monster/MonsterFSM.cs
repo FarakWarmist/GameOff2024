@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class MonsterFSM : MonoBehaviour
 {
     NavMeshAgent _navAgent;
+    [SerializeField] private Animator _animator;
     [SerializeField] private float _speed = 12.5f;
     enum MonsterState
     {
@@ -102,6 +103,8 @@ public class MonsterFSM : MonoBehaviour
             break;
         }
 
+        _animator.SetBool("Moving", _navAgent.velocity.x != 0 || _navAgent.velocity.z != 0);
+
         if(_seeingPlayer && _currentMonsterState != MonsterState.Chasing)
         {
             _currentMonsterState = MonsterState.Chasing;
@@ -153,16 +156,19 @@ public class MonsterFSM : MonoBehaviour
         if(_seeingPlayer)
         {
             _navAgent.SetDestination(GameManager.Instance.playerPosition);
+            _animator.SetBool("Running", true);
         }
         else
         {
             if(_sawPlayerHiding)
             {
                 _navAgent.SetDestination(GameManager.Instance.playerPosition);
+                _animator.SetBool("Running", true);
             }
             else
             {
                 _currentMonsterState = MonsterState.SearchingPlayer;
+                _animator.SetBool("Running", true);
             }
         }
     }
@@ -209,8 +215,6 @@ public class MonsterFSM : MonoBehaviour
 
     private void SearchingPlayer()
     {
-        float distance = Vector3.Distance(_navAgent.destination, transform.position);
-
         if(_onSearchingPoint)
         {
             if(_searchingTimer <= Time.time)
@@ -219,10 +223,16 @@ public class MonsterFSM : MonoBehaviour
                 _currentMonsterState = MonsterState.Idle;
             }
         }
-        if(distance <= 2.5f)
+        else
         {
-            _onSearchingPoint = true;
-            _searchingTimer = Time.time + _searchingTime;
+            float distance = Vector3.Distance(_navAgent.destination, transform.position);
+
+            if(distance <= 2.5f)
+            {
+                _onSearchingPoint = true;
+                _animator.SetBool("Running", false);
+                _searchingTimer = Time.time + _searchingTime;
+            }
         }
     }
 
