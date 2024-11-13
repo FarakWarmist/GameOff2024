@@ -10,6 +10,7 @@ public class Door : Interactable
     [SerializeField] private float _openedRotationY;
     [SerializeField] private bool _opening;
     [SerializeField] private bool _closing;
+    [SerializeField] private int _indexNeededToOpen = 1;
 
     void Start()
     {
@@ -82,7 +83,7 @@ public class Door : Interactable
         {
             if(_locked)
             {
-                if(itemIndex == 1)
+                if(itemIndex == _indexNeededToOpen)
                 {
                     Inventory.Instance.UpdateInventorySlot(slotIndex, null);
                     OpenOrClose();

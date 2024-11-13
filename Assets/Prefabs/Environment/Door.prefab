@@ -47,12 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a8825e9a9ebd24caa5174b5b74bc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _locked: 1
+  _locked: 0
   _rotationSpeed: 160
   _startingYRot: 0
   _openedRotationY: 0
   _opening: 0
   _closing: 0
+  _indexNeededToOpen: 1
 --- !u!33 &3381022454441134643
 MeshFilter:
   m_ObjectHideFlags: 0
