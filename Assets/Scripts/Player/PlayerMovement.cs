@@ -180,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
             y = Mathf.Abs (_amplitudeYWalking*Mathf.Sin (_omegaY*index));
 
 
-        y += _headBobYOffset;
+        y += (transform.position.y + _headBobYOffset);
         _cameraPosition.y = y;
         _cameraPosition.x = transform.localPosition.x;
         _cameraPosition.z = transform.localPosition.z;
