@@ -49,6 +49,10 @@ public class MonsterFSM : MonoBehaviour
     //* SEARCHING PLAYER
     [SerializeField] private float _searchingTime = 10f;
     private float _searchingTimer;
+    [SerializeField] private float _graceTime = 5f;
+    private float _graceTimer;
+    private float _graceTimer2;
+    private bool _hasGrace = false;
     private bool _onSearchingPoint;
 
 
@@ -108,6 +112,7 @@ public class MonsterFSM : MonoBehaviour
         if(_seeingPlayer && _currentMonsterState != MonsterState.Chasing)
         {
             _currentMonsterState = MonsterState.Chasing;
+            _hasGrace = false;
         }
 
         GameManager.Instance.SetMonsterPosition(transform.position);
@@ -168,6 +173,9 @@ public class MonsterFSM : MonoBehaviour
             else
             {
                 _currentMonsterState = MonsterState.SearchingPlayer;
+                _graceTimer = Time.time + _graceTime;
+                _graceTimer2 = Time.time + 1;
+                _hasGrace = true;
                 _animator.SetBool("Running", true);
             }
         }
@@ -215,25 +223,42 @@ public class MonsterFSM : MonoBehaviour
 
     private void SearchingPlayer()
     {
-        if(_onSearchingPoint)
+        if(_hasGrace)
         {
-            if(_searchingTimer <= Time.time)
+            if(_graceTimer2 <= Time.time)
             {
-                _onSearchingPoint = false;
-                _currentMonsterState = MonsterState.Idle;
+                _navAgent.SetDestination(GameManager.Instance.playerPosition);
+                _graceTimer2 = Time.time + 1;
+            }
+
+            if(_graceTimer <= Time.time)
+            {
+                _hasGrace = false;
             }
         }
         else
         {
-            float distance = Vector3.Distance(_navAgent.destination, transform.position);
-
-            if(distance <= 2.5f)
+            if(_onSearchingPoint)
             {
-                _onSearchingPoint = true;
-                _animator.SetBool("Running", false);
-                _searchingTimer = Time.time + _searchingTime;
+                if(_searchingTimer <= Time.time)
+                {
+                    _onSearchingPoint = false;
+                    _currentMonsterState = MonsterState.Idle;
+                }
+            }
+            else
+            {
+                float distance = Vector3.Distance(_navAgent.destination, transform.position);
+
+                if(distance <= 2.5f)
+                {
+                    _onSearchingPoint = true;
+                    _animator.SetBool("Running", false);
+                    _searchingTimer = Time.time + _searchingTime;
+                }
             }
         }
+
     }
 
     private void PlayerHidingChanged(bool value)
