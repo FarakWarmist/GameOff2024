@@ -5,6 +5,7 @@ using UnityEngine;
 public class Inventory : MonoSingleton<Inventory>
 {
     [SerializeField] private ItemSlot[] _itemSlots = new ItemSlot[5];
+    [SerializeField] private ItemData _specialKeyItemData;
     private ItemData[] _itemData = new ItemData[5];
     public int _selectedSlot {get; private set;} = 0;
 
@@ -66,7 +67,28 @@ public class Inventory : MonoSingleton<Inventory>
     {
         if(_itemSlots[_selectedSlot].IsEmpty())
         {
-            _itemSlots[_selectedSlot].AssignItemToSlot(itemData);
+            if(itemData.itemId == 6)
+            {
+                List<int> keyFragments = new List<int>();
+                for(int e = 0; e < _itemSlots.Length; e++)
+                {
+                    if(_itemSlots[e].IsEmpty() == false)
+                        if(_itemSlots[e].itemData.itemId == 6) keyFragments.Add(e);
+                }
+
+                if(keyFragments.Count >= 2)
+                {
+                    _itemSlots[_selectedSlot].AssignItemToSlot(_specialKeyItemData);
+                    for(int o = 0; o < keyFragments.Count; o++)
+                        _itemSlots[keyFragments[o]].RemoveItemFromSlot();
+                }
+                else
+                    _itemSlots[_selectedSlot].AssignItemToSlot(itemData);
+
+            }
+            else
+                _itemSlots[_selectedSlot].AssignItemToSlot(itemData);
+
             Destroy(go);
         }
         else
@@ -75,7 +97,33 @@ public class Inventory : MonoSingleton<Inventory>
             {
                 if(_itemSlots[i].IsEmpty())
                 {
-                    _itemSlots[i].AssignItemToSlot(itemData);
+                    if(itemData.itemId == 6)
+                    {
+                        List<int> keyFragments = new List<int>();
+                        for(int e = 0; e < _itemSlots.Length; e++)
+                        {
+                            if(_itemSlots[e].IsEmpty() == false)
+                                if(_itemSlots[e].itemData.itemId == 6) keyFragments.Add(e);
+                        }
+
+                        if(keyFragments.Count >= 2)
+                        {
+                            _itemSlots[i].AssignItemToSlot(_specialKeyItemData);
+                            foreach(ItemSlot iS in _itemSlots)
+                            {
+                                if(iS.IsEmpty() == false)
+                                {
+                                    if(iS.itemData.itemId == 6)
+                                        iS.RemoveItemFromSlot();
+                                }
+                            }
+                        }
+                        else
+                            _itemSlots[i].AssignItemToSlot(itemData);
+                    }
+                    else
+                        _itemSlots[i].AssignItemToSlot(itemData);
+
                     _itemSlots[_selectedSlot].Selection(false);
                     _itemSlots[i].Selection(true);
                     Destroy(go);

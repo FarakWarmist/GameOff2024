@@ -52,6 +52,8 @@ public class ItemSpawner : MonoBehaviour
 
         Instantiate(_key1, _keySpawnPoints[rand1].position, Quaternion.identity);
         Instantiate(_key2, _keySpawnPoints[rand2].position, Quaternion.identity);
+
+        Instantiate(_exitKey, _exitKeySpawnPoint.position, Quaternion.identity);
     }
 
     private void GetTheSpawnPoints()
