@@ -5,6 +5,8 @@ using UnityEngine;
 public class SafeBox : MonoBehaviour
 {
     [SerializeField] private int[] _code = new int[3];
+    [SerializeField] private Transform _keySpawnPosition;
+    [SerializeField] private GameObject _key3Prefab;
     private int[] _numbers = new int[3];
     public bool _isOpened {get; private set;}
     [SerializeField] private MeshRenderer _meshRenderer;
@@ -16,6 +18,7 @@ public class SafeBox : MonoBehaviour
         {
             //Open the safe box
             _meshRenderer.material.color = Color.green;
+            Instantiate(_key3Prefab, _keySpawnPosition.position, Quaternion.identity);
             _isOpened = true;
         }
     }
