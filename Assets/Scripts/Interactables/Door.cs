@@ -113,6 +113,8 @@ public class Door : Interactable
     public void OpenDoor()
     {
         Debug.Log("Open Door | T: " + Time.time);
+        if(_locked) return;
+        
         if(_opening) return;
 
         float rotY = transform.parent.transform.rotation.eulerAngles.y;
