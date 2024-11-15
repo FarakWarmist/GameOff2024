@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    [SerializeField] private GameObject _lanternObject;
     [SerializeField] private Transform _droppingPoint;
     [SerializeField] private bool _objectOnRange;
     private GameObject _collectableGameobject;
@@ -16,6 +17,7 @@ public class PlayerInventory : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        GameManager.Instance.SetPlayerInventoryScript(this);
     }
 
     void Update()
@@ -99,4 +101,6 @@ public class PlayerInventory : MonoBehaviour
 
         Debug.DrawRay(Camera.main.transform.position,  rayChecker.direction * _rangeForCollection, Color.green);
     }
+
+    public void ToggleLantern(bool value) => _lanternObject.SetActive(value);
 }

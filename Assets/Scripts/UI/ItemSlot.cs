@@ -13,6 +13,10 @@ public class ItemSlot : MonoBehaviour
         _image.sprite = item.itemImage;
         _image.gameObject.SetActive(true);
         itemData = item;
+
+        if(itemData != null)
+            if(itemData.itemId == 12)
+                GameManager.Instance.playerInventoryScr.ToggleLantern(true);
     }
 
     public void RemoveItemFromSlot()
@@ -25,10 +29,18 @@ public class ItemSlot : MonoBehaviour
     {
         if(value)
         {
+            if(itemData != null)
+                if(itemData.itemId == 12)
+                    GameManager.Instance.playerInventoryScr.ToggleLantern(true);
+
             transform.localScale = Vector3.one * 1.05f;
         }
         else
         {
+            if(itemData != null)
+                if(itemData.itemId == 12)
+                    GameManager.Instance.playerInventoryScr.ToggleLantern(false);
+
             transform.localScale = Vector3.one;
         }
     }

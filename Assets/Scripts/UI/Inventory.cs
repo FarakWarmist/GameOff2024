@@ -38,6 +38,9 @@ public class Inventory : MonoSingleton<Inventory>
     {
         if(_itemSlots[_selectedSlot].IsEmpty() == false)
         {
+            if(_itemSlots[_selectedSlot].itemData.itemId == 12)
+                GameManager.Instance.playerInventoryScr.ToggleLantern(false);
+
             Instantiate(_itemSlots[_selectedSlot].itemData.itemPrefab, position, Quaternion.identity);
             UpdateInventorySlot(_selectedSlot, null);
         }

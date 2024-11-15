@@ -16,5 +16,5 @@ MonoBehaviour:
   itemDescription: Use this to open locked doors
   itemImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   itemId: 5
-  itemPrefab: {fileID: 5345960318428937001, guid: 49a59a5c31453f8409abc94578ca89f8,
+  itemPrefab: {fileID: 5345960318428937001, guid: a48d69e04d652764f9461f228f0c9d06,
     type: 3}

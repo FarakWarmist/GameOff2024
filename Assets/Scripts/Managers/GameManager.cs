@@ -7,6 +7,7 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public Vector3 playerPosition {get; private set;}
     public PlayerMovement playerMovementScr {get; private set;}
+    public PlayerInventory playerInventoryScr {get; private set;}
     public bool isHiding {get; private set;}
     public static event Action<bool> OnHidingChanged;
     public int[] _safeBoxCode {get; private set;} = new int[3];
@@ -15,6 +16,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void SetPlayerPosition(Vector3 pos) => playerPosition = pos;
     public void SetPlayerMovementScript(PlayerMovement pMS) => playerMovementScr = pMS;
+    public void SetPlayerInventoryScript(PlayerInventory pIS) => playerInventoryScr = pIS;
     public void SetIsHiding(bool value)
     {
         isHiding = value;
