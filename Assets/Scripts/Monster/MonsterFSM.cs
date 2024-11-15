@@ -67,7 +67,8 @@ public class MonsterFSM : MonoBehaviour
         _roamingTimer = Time.time + UnityEngine.Random.Range(_minTimeToRoam, _maxTimeToRoam);
 
         GameManager.OnHidingChanged += PlayerHidingChanged;
-        PlayerTestNoise.OnNoiseMade += Noise;
+        // PlayerTestNoise.OnNoiseMade += Noise;
+        NoiseManager.OnNoiseMade += Noise;
 
         foreach(Transform t in _roamingPlacesObject.GetComponentInChildren<Transform>())
         {
@@ -77,7 +78,8 @@ public class MonsterFSM : MonoBehaviour
 
     void OnDisable()
     {
-        PlayerTestNoise.OnNoiseMade -= Noise;
+        // PlayerTestNoise.OnNoiseMade -= Noise;
+        NoiseManager.OnNoiseMade -= Noise;
         GameManager.OnHidingChanged -= PlayerHidingChanged;
     }
 

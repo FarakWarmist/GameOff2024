@@ -57,6 +57,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _staminaRecovery = 2f;
     [SerializeField] private float _staminaRecoveryTime = 2f;
     private float _staminaRecoveryTimer;
+    [Header("MAKING NOISE")]
+    [SerializeField] private float _noiseWhenWalking = 7.5f;
+    [SerializeField] private float _noiseWhenRunning = 15f;
 
     void Start()
     {
@@ -148,11 +151,13 @@ public class PlayerMovement : MonoBehaviour
 
         StaminaHandler();
         GameManager.Instance.SetPlayerPosition(transform.position);
+
+        MakeNoise();
     }
 
     private void HeadBob()
     {
-        if(_movementVector != Vector3.zero)
+        if(_movementVector.x != 0 || _movementVector.z != 0)
         {
             CameraSine();
         }
@@ -187,6 +192,17 @@ public class PlayerMovement : MonoBehaviour
         _cameraPosition.x = transform.localPosition.x;
         _cameraPosition.z = transform.localPosition.z;
         Camera.main.transform.position = _cameraPosition;
+    }
+
+    private void MakeNoise()
+    {
+        if(_movementVector.x != 0 || _movementVector.z != 0)
+        {
+            if(_running)
+                NoiseManager.Instance.MakeNoise(_noiseWhenRunning, transform.position);
+            else
+                NoiseManager.Instance.MakeNoise(_noiseWhenWalking, transform.position);
+        }
     }
 
     private void StaminaHandler()

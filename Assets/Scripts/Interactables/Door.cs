@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Door : Interactable
 {
+    [SerializeField] private float _noiseWhenOpened = 6.5f;
     [SerializeField] private bool _locked;
     [SerializeField] private float _rotationSpeed = 90f;
     [SerializeField] private float _startingYRot;
@@ -93,6 +94,7 @@ public class Door : Interactable
             else
             {
                 OpenOrClose();
+                NoiseManager.Instance.MakeNoise(_noiseWhenOpened, transform.position);
             }
         }
 

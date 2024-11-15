@@ -6,6 +6,7 @@ using UnityEngine;
 public class HidingPlace : Interactable
 {
 
+    [SerializeField] private float _noiseWhenHiding = 6.5f;
     PlayerMovement pMS;
     [SerializeField] private Transform _hidingPoint;
     [SerializeField] private Transform _leavingPoint;
@@ -25,6 +26,8 @@ public class HidingPlace : Interactable
 
             playerPositionWhenEntering = GameManager.Instance.playerPosition;
             enteringStartTime = Time.time;
+
+            NoiseManager.Instance.MakeNoise(_noiseWhenHiding, transform.position);
 
             pMS.SetCanMove(false);
             pMS.SetPlayerColliderTrigger(true);
