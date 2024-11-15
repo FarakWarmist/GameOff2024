@@ -9,6 +9,7 @@ public class GameManager : MonoSingleton<GameManager>
     public PlayerMovement playerMovementScr {get; private set;}
     public bool isHiding {get; private set;}
     public static event Action<bool> OnHidingChanged;
+    public int[] _safeBoxCode {get; private set;} = new int[3];
 
     public Vector3 monsterPosition {get; private set;}
 
@@ -21,4 +22,11 @@ public class GameManager : MonoSingleton<GameManager>
     }
 
     public void SetMonsterPosition(Vector3 pos) => monsterPosition = pos;
+
+    public void SetSafeBoxCode(int code1, int code2, int code3)
+    {
+        _safeBoxCode[0] = code1;
+        _safeBoxCode[1] = code2;
+        _safeBoxCode[2] = code3;
+    }
 }

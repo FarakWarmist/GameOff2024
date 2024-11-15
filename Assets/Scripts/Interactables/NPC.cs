@@ -19,6 +19,14 @@ public class NPC : Interactable
     private WaitForSeconds _textSpeed = new WaitForSeconds(0.05f);
     private bool _playerReading;
 
+    [Header("Item")]
+    [SerializeField] private bool _needItem;
+    [SerializeField] private int _itemNeededIndex = 11;
+    string _itemMessage = "The code for the safe box is ";
+    private bool _gotItem;
+    private int[] _code = new int[3];
+    private bool _gotCode;
+
     void Start()
     {
         _conversationIndexLimit = _npcDialogue.conversations.Length;
@@ -26,19 +34,41 @@ public class NPC : Interactable
 
     public override void Interact(int itemIndex, int slotIndex)
     {
+        if(_gotCode == false && _needItem)
+        {
+            _code = GameManager.Instance._safeBoxCode;
+            _itemMessage += _code[0].ToString() + " " + _code[1].ToString() + " " + _code[2].ToString();   
+            _gotCode = true;
+        }
+
+        if(itemIndex == _itemNeededIndex)
+        {
+            Inventory.Instance.UpdateInventorySlot(slotIndex, null);
+            _gotItem = true;
+        }
+
         _linesIndexLimit = _npcDialogue.conversations[_currentConversationIndex].conversationLines.Length;
 
         if(_onConversation == false)
         {
-            Interaction(_npcDialogue.conversations[_currentConversationIndex].conversationLines[_currentLineIndex]);
+            if(_gotItem == false)
+                Interaction(_npcDialogue.conversations[_currentConversationIndex].conversationLines[_currentLineIndex]);
+            else
+            {
+                Interaction(_itemMessage);
+                _currentLineIndex = 0;
+            }
 
             _currentLineIndex++;
             if(_currentLineIndex >= _linesIndexLimit)
             {
-                _currentConversationIndex++;
-                if(_currentConversationIndex >= _conversationIndexLimit)
+                if(_needItem == false)
                 {
-                    _currentConversationIndex = _conversationIndexLimit - 1;
+                    _currentConversationIndex++;
+                    if(_currentConversationIndex >= _conversationIndexLimit)
+                    {
+                        _currentConversationIndex = _conversationIndexLimit - 1;
+                    }
                 }
 
                 _currentLineIndex = 0;

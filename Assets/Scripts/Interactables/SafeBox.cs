@@ -11,6 +11,15 @@ public class SafeBox : MonoBehaviour
     public bool _isOpened {get; private set;}
     [SerializeField] private MeshRenderer _meshRenderer;
 
+    void Start()
+    {
+        for(int i = 0; i < _code.Length; i++)
+        {
+            _code[i] = Random.Range(0, 10);
+        }
+        GameManager.Instance.SetSafeBoxCode(_code[0], _code[1], _code[2]);
+    }
+
     public void UpdateNumber(int numberIndex, int newValue)
     {
         _numbers[numberIndex] = newValue;
