@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _gravity;
     [SerializeField] private float _maxFallingSpeed;
+    private float _maxFallingSpeedStairs = -1;
     [SerializeField] private float _jumpForce;
     [SerializeField] private bool _canRun;
     [SerializeField] private float _runningSpeedMultiplier;
@@ -122,9 +123,10 @@ public class PlayerMovement : MonoBehaviour
 
             if(_groundNormal.y < 0.95f)
             {
-                
+                _movementVector.y = _maxFallingSpeedStairs;
             }
-            else if(_isGrounded)
+
+            if(_groundNormal.y > 0.95f && _isGrounded)
             {
                 _movementVector.y = 0;
             }
