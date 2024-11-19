@@ -15,13 +15,13 @@ public class ItemSlot : MonoBehaviour
         itemData = item;
 
         if(itemData != null)
-            if(itemData.itemId == 12)
-                GameManager.Instance.playerInventoryScr.ToggleLantern(true);
+            GameManager.Instance.playerInventoryScr.ToggleItem(true, itemData.itemId);
     }
 
     public void RemoveItemFromSlot()
     {
         _image.gameObject.SetActive(false);
+        if(itemData != null) GameManager.Instance.playerInventoryScr.ToggleItem(false, itemData.itemId);
         itemData = null;
     }
 
@@ -30,16 +30,14 @@ public class ItemSlot : MonoBehaviour
         if(value)
         {
             if(itemData != null)
-                if(itemData.itemId == 12)
-                    GameManager.Instance.playerInventoryScr.ToggleLantern(true);
+                GameManager.Instance.playerInventoryScr.ToggleItem(true, itemData.itemId);
 
             transform.localScale = Vector3.one * 1.05f;
         }
         else
         {
             if(itemData != null)
-                if(itemData.itemId == 12)
-                    GameManager.Instance.playerInventoryScr.ToggleLantern(false);
+                GameManager.Instance.playerInventoryScr.ToggleItem(false, itemData.itemId);
 
             transform.localScale = Vector3.one;
         }

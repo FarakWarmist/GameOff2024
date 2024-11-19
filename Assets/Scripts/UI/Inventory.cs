@@ -38,8 +38,7 @@ public class Inventory : MonoSingleton<Inventory>
     {
         if(_itemSlots[_selectedSlot].IsEmpty() == false)
         {
-            if(_itemSlots[_selectedSlot].itemData.itemId == 12)
-                GameManager.Instance.playerInventoryScr.ToggleLantern(false);
+            GameManager.Instance.playerInventoryScr.ToggleItem(false, _itemSlots[_selectedSlot].itemData.itemId);
 
             Instantiate(_itemSlots[_selectedSlot].itemData.itemPrefab, position, Quaternion.identity);
             UpdateInventorySlot(_selectedSlot, null);
@@ -70,13 +69,14 @@ public class Inventory : MonoSingleton<Inventory>
     {
         if(_itemSlots[_selectedSlot].IsEmpty())
         {
-            if(itemData.itemId == 6)
+            if(itemData.itemId == 6 || itemData.itemId == 7 || itemData.itemId == 8)
             {
                 List<int> keyFragments = new List<int>();
                 for(int e = 0; e < _itemSlots.Length; e++)
                 {
                     if(_itemSlots[e].IsEmpty() == false)
-                        if(_itemSlots[e].itemData.itemId == 6) keyFragments.Add(e);
+                        if(_itemSlots[e].itemData.itemId == 6 || _itemSlots[e].itemData.itemId == 7 || _itemSlots[e].itemData.itemId == 8)
+                            keyFragments.Add(e);
                 }
 
                 if(keyFragments.Count >= 2)
@@ -100,13 +100,14 @@ public class Inventory : MonoSingleton<Inventory>
             {
                 if(_itemSlots[i].IsEmpty())
                 {
-                    if(itemData.itemId == 6)
+                    if(itemData.itemId == 6 || itemData.itemId == 7 || itemData.itemId == 8)
                     {
                         List<int> keyFragments = new List<int>();
                         for(int e = 0; e < _itemSlots.Length; e++)
                         {
                             if(_itemSlots[e].IsEmpty() == false)
-                                if(_itemSlots[e].itemData.itemId == 6) keyFragments.Add(e);
+                                if(_itemSlots[e].itemData.itemId == 6 || _itemSlots[e].itemData.itemId == 7 || _itemSlots[e].itemData.itemId == 8) 
+                                    keyFragments.Add(e);
                         }
 
                         if(keyFragments.Count >= 2)
@@ -116,7 +117,7 @@ public class Inventory : MonoSingleton<Inventory>
                             {
                                 if(iS.IsEmpty() == false)
                                 {
-                                    if(iS.itemData.itemId == 6)
+                                    if(iS.itemData.itemId == 6 || iS.itemData.itemId == 7 || iS.itemData.itemId == 8)
                                         iS.RemoveItemFromSlot();
                                 }
                             }
@@ -127,6 +128,9 @@ public class Inventory : MonoSingleton<Inventory>
                     else
                         _itemSlots[i].AssignItemToSlot(itemData);
 
+                    if(_itemSlots[_selectedSlot].itemData != null)
+                        GameManager.Instance.playerInventoryScr.ToggleItem(false, _itemSlots[_selectedSlot].itemData.itemId);
+                        
                     _itemSlots[_selectedSlot].Selection(false);
                     _itemSlots[i].Selection(true);
                     Destroy(go);

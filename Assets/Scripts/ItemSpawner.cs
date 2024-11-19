@@ -14,7 +14,7 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] private GameObject _key1;
     [SerializeField] private GameObject _key2;
     [SerializeField] private GameObject _safeBox;
-    [SerializeField] private GameObject _specialItem;
+    [SerializeField] private GameObject[] _keyFragments = new GameObject[3];
     [SerializeField] private GameObject _exitKey;
     [SerializeField] private GameObject _itemForNPC;
 
@@ -31,8 +31,8 @@ public class ItemSpawner : MonoBehaviour
         int rand = Random.Range(0, _safeBoxSpawnPoints.Count);
         Instantiate(_safeBox, _safeBoxSpawnPoints[rand].position, _safeBoxSpawnPoints[rand].rotation);
 
-        foreach(Transform t in _specialItemSpawnPoints)
-            Instantiate(_specialItem, t.position, Quaternion.identity);
+        for(int i = 0; i < _specialItemSpawnPoints.Count; i++)
+            Instantiate(_keyFragments[i], _specialItemSpawnPoints[i].position, Quaternion.identity);
 
         rand = Random.Range(0, _itemForNPCSpawnPoints.Count);
         Instantiate(_itemForNPC, _itemForNPCSpawnPoints[rand].position, Quaternion.identity);

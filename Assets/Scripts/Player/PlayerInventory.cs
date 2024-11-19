@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    [SerializeField] private GameObject _lanternObject;
     [SerializeField] private Transform _droppingPoint;
     [SerializeField] private bool _objectOnRange;
     private GameObject _collectableGameobject;
+    [SerializeField] private GameObject[] _itemModels;
+    private Dictionary<int, GameObject> _itemByItemId = new Dictionary<int, GameObject>();
     [Header("Raycasting")]
     [SerializeField] private bool _debug;
     [SerializeField] private LayerMask _lM;
@@ -16,6 +17,8 @@ public class PlayerInventory : MonoBehaviour
 
     void Start()
     {
+        InitializeItemByItemIdDictionary();
+
         Cursor.lockState = CursorLockMode.Locked;
         GameManager.Instance.SetPlayerInventoryScript(this);
     }
@@ -102,5 +105,22 @@ public class PlayerInventory : MonoBehaviour
         Debug.DrawRay(Camera.main.transform.position,  rayChecker.direction * _rangeForCollection, Color.green);
     }
 
-    public void ToggleLantern(bool value) => _lanternObject.SetActive(value);
+    public void ToggleItem(bool value, int itemId) => _itemByItemId[itemId].SetActive(value);
+
+    private void InitializeItemByItemIdDictionary()
+    {
+        _itemByItemId[1] = _itemModels[0];
+        _itemByItemId[2] = _itemModels[1];
+        _itemByItemId[3] = _itemModels[2];
+        _itemByItemId[4] = _itemModels[3];
+        _itemByItemId[5] = _itemModels[4];
+
+        _itemByItemId[6] = _itemModels[5];
+        _itemByItemId[7] = _itemModels[6];
+        _itemByItemId[8] = _itemModels[7];
+
+        _itemByItemId[11] = _itemModels[8];
+        _itemByItemId[12] = _itemModels[9];
+
+    }
 }
