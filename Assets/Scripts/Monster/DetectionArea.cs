@@ -8,6 +8,7 @@ public class DetectionArea : MonoBehaviour
     [SerializeField] private LayerMask _lM;
     [SerializeField] private bool _debug;
     [SerializeField] private bool _playerOnDetectionArea;
+    [SerializeField] private float _grabbingPlayerDistance = 1.5f;
 
     void Update()
     {
@@ -18,6 +19,11 @@ public class DetectionArea : MonoBehaviour
         else
         {
             _monsterFSMScr.SetSeeingPlayer(false);
+        }
+
+        if(Vector3.Distance(GameManager.Instance.playerPosition, transform.position) < _grabbingPlayerDistance)
+        {
+            GrabPlayer();
         }
     }
 
@@ -65,5 +71,13 @@ public class DetectionArea : MonoBehaviour
     private void DebugRay()
     {
         Debug.DrawRay(transform.position, GameManager.Instance.playerPosition - transform.position, Color.blue);
+    }
+
+    private void GrabPlayer()
+    {
+        GameManager.Instance.DisablePlayer();
+        //*Interpolate the player position to the player spot on the monster
+        //*Activate the monster attacking animation(eating the player)
+        //*Game over screen on animation finish
     }
 }

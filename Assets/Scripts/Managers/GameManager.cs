@@ -31,4 +31,9 @@ public class GameManager : MonoSingleton<GameManager>
         _safeBoxCode[1] = code2;
         _safeBoxCode[2] = code3;
     }
+
+    public void DisablePlayer()
+    {
+        
+    }
 }
