@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Key Fragment
   itemDescription: Use this to open locked doors
-  itemImage: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  itemImage: {fileID: 21300000, guid: 43712ad1296d5724f9d083db4ae82fd3, type: 3}
   itemId: 7
   itemPrefab: {fileID: 5345960318428937001, guid: a4fd91e75b880b94dbbd10b4a5988f37,
     type: 3}

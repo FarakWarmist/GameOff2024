@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: NPC Item
   itemDescription: Use this to open locked doors
-  itemImage: {fileID: 21300000, guid: 9d60156fae9226e4eb80912c46bfbf25, type: 3}
+  itemImage: {fileID: 21300000, guid: 3ae4978cd079f104aa0c3752e784cda6, type: 3}
   itemId: 12
   itemPrefab: {fileID: 5345960318428937001, guid: c31844de9a5388d4c8958c64941f1485,
     type: 3}

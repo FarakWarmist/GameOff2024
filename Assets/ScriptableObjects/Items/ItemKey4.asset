@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Exit Key
   itemDescription: Use this to open locked doors
-  itemImage: {fileID: 21300000, guid: 9d60156fae9226e4eb80912c46bfbf25, type: 3}
+  itemImage: {fileID: 21300000, guid: 5ef158db269030e4fab02246b82aa843, type: 3}
   itemId: 4
   itemPrefab: {fileID: 5345960318428937001, guid: f258b3c58a74b8b45838e915b6641c89,
     type: 3}
