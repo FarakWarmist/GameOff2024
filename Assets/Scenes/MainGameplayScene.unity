@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.05
+  m_FogDensity: 0.1
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -9877,6 +9877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 473188225}
+  - component: {fileID: 473188226}
   m_Layer: 0
   m_Name: Torch
   m_TagString: Untagged
@@ -9903,6 +9904,19 @@ Transform:
   - {fileID: 1677774568}
   m_Father: {fileID: 11721997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &473188226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473188224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81af28c3f8a1edc40b18543df6bd4eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fogDensityReducer: 0.03
 --- !u!1 &474546671
 GameObject:
   m_ObjectHideFlags: 0
@@ -25278,6 +25292,7 @@ Transform:
   - {fileID: 1573675942}
   - {fileID: 1276233946}
   - {fileID: 812420960}
+  - {fileID: 1806334892}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1697750334
@@ -26124,6 +26139,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1514342454}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1806334891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1806334892}
+  - component: {fileID: 1806334893}
+  m_Layer: 0
+  m_Name: FogManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1806334892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806334891}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1691118225}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1806334893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806334891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dead7f51c731f4a9649fa7e5428664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1808443073
 GameObject:
   m_ObjectHideFlags: 0
