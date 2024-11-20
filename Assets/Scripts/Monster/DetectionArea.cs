@@ -28,8 +28,11 @@ public class DetectionArea : MonoBehaviour
 
         if(_playerCaught == false && Vector3.Distance(GameManager.Instance.playerPosition, transform.parent.transform.position) < _grabbingPlayerDistance)
         {
-            GrabPlayer();
-            _playerCaught = true;
+            if(_monsterFSMScr.GetSeeingPlayer() || _monsterFSMScr.GetSawPlayerHiding())
+            {
+                GrabPlayer();
+                _playerCaught = true;
+            }
         }
 
         if(_playerCaught && _interpolatePlayerTransform)

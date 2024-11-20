@@ -24,7 +24,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void SetPlayerInventoryScript(PlayerInventory pIS) => playerInventoryScr = pIS;
     public void SetPlayerInteractionScript(PlayerInteraction pIS) => playerInteractionScr = pIS;
     public void SetPlayerGameObject(GameObject gO) => playerGameObject = gO;
-    public void SetPlyaerStayCenteredScript(PlayerStayCenteredOnParent pSCOP) => playerStayCenteredOnParentScr = pSCOP;
+    public void SetPlayerStayCenteredScript(PlayerStayCenteredOnParent pSCOP) => playerStayCenteredOnParentScr = pSCOP;
 
     public void SetIsHiding(bool value)
     {

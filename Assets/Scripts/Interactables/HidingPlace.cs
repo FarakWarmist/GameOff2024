@@ -32,6 +32,7 @@ public class HidingPlace : Interactable
             pMS.SetCanMove(false);
             pMS.SetPlayerColliderTrigger(true);
             _playerHiding = true;
+            GameManager.Instance.SetIsHiding(true);
         }
     }
 
@@ -48,6 +49,7 @@ public class HidingPlace : Interactable
                     _isExiting = true;
                     _playerHiding = false;
                     _positionInterpolated = false;
+                    GameManager.Instance.SetIsHiding(false);
                 }
             }
             else
@@ -57,7 +59,6 @@ public class HidingPlace : Interactable
                 if((enteringStartTime + _interpolationTime) < Time.time)
                 {
                     _positionInterpolated = true;
-                    GameManager.Instance.SetIsHiding(true);
                 }
             }
         }
@@ -71,7 +72,6 @@ public class HidingPlace : Interactable
                 pMS.SetPlayerColliderTrigger(false);
                 pMS.SetCanMove(true);
                 _isExiting = false;
-                GameManager.Instance.SetIsHiding(false);
             }
         }
     }

@@ -24,7 +24,7 @@ public class Door : Interactable
     {
         if(_opening)
         {
-            Debug.Log("Euler: " + transform.parent.transform.rotation.eulerAngles.y);
+            // Debug.Log("Euler: " + transform.parent.transform.rotation.eulerAngles.y);
             transform.parent.transform.Rotate(Vector3.down * _rotationSpeed * Time.deltaTime);
 
             if(_openedRotationY < 2)

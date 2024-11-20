@@ -6,7 +6,7 @@ public class PlayerStayCenteredOnParent : MonoBehaviour
 {
     public bool stayCentered {get; private set;}
 
-    void Start() => GameManager.Instance.SetPlyaerStayCenteredScript(this);
+    void Start() => GameManager.Instance.SetPlayerStayCenteredScript(this);
 
     void FixedUpdate()
     {

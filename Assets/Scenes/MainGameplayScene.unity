@@ -16165,6 +16165,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LanternItem
       objectReference: {fileID: 0}
+    - target: {fileID: 5345960318428937001, guid: c31844de9a5388d4c8958c64941f1485,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28930,6 +28935,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5754842079720365811, guid: 6659fba984882e0468ac8bc67ad6937f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7929854303166664461, guid: 6659fba984882e0468ac8bc67ad6937f,
         type: 3}

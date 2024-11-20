@@ -283,4 +283,7 @@ public class MonsterFSM : MonoBehaviour
             _navAgent.isStopped = false;
         }
     }
+
+    public bool GetSeeingPlayer() => _seeingPlayer;
+    public bool GetSawPlayerHiding() => _sawPlayerHiding;
 }
