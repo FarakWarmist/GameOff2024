@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72c6a7a97e124b64593e0621860e5811, type: 3}
+  m_Name: ItemNPCConversation1
+  m_EditorClassIdentifier: 
+  conversationLines:
+  - I used to be part of the cult to this monster but when I saw the people being
+    eaten I tried to leave
+  - After they knew I wanted to leave they dragged me here to be sacrificed to the
+    monster
+  - I lost my pocket watch when I got dragged here, it super important for me, and
+    if I am dying I atleast want to have it with me
+  - If you can get me my pocket watch I will give you the code for the safe box

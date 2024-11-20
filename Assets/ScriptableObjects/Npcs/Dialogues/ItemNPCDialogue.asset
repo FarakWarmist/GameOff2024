@@ -10,9 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 311a76f3f20204d468e87e907ef9d010, type: 3}
-  m_Name: NPCDialogueTest
+  m_Name: ItemNPCDialogue
   m_EditorClassIdentifier: 
   conversations:
   - {fileID: 11400000, guid: d830e4ff2d7ae37429ce8c65504d1057, type: 2}
-  - {fileID: 11400000, guid: bcc100f465c2191459dd0ad71267b9dc, type: 2}
-  - {fileID: 11400000, guid: d8103a70a06a80b4cb4331248043e57b, type: 2}

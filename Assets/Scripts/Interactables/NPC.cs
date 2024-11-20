@@ -22,7 +22,7 @@ public class NPC : Interactable
     [Header("Item")]
     [SerializeField] private bool _needItem;
     [SerializeField] private int _itemNeededIndex = 11;
-    string _itemMessage = "The code for the safe box is ";
+    string _itemMessage = "Thank you, the code for the safe box is ";
     private bool _gotItem;
     private int[] _code = new int[3];
     private bool _gotCode;
