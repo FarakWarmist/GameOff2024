@@ -11,6 +11,8 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private LayerMask _lM;
     [SerializeField] private bool _debug;
 
+    void Start() => GameManager.Instance.SetPlayerInteractionScript(this);
+
     void Update()
     {
         CheckForCollectables();

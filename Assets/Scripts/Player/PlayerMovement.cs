@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         _cameraPosition.z = Camera.main.transform.position.z;
 
         GameManager.Instance.SetPlayerMovementScript(this);
+        GameManager.Instance.SetPlayerGameObject(this.gameObject);
     }
 
     private void Initialize()
@@ -349,4 +350,6 @@ public class PlayerMovement : MonoBehaviour
     }
     public void SetPlayerPosition(Vector3 pos) => this.transform.position = pos;
     public void SetPlayerRotation(Quaternion rot) => this.transform.rotation = rot;
+
+    public void ResetCameraRotation() => Camera.main.transform.localRotation = Quaternion.Euler(Vector3.zero);
 }
