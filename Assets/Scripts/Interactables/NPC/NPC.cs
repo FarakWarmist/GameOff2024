@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 public class NPC : Interactable
 {
@@ -14,6 +15,7 @@ public class NPC : Interactable
 
     private bool _breakConversation;
     private bool _onConversation;
+    private bool _leftTalkingArea;
     
     private List<char> _messageDecomposed = new List<char>();
     private WaitForSeconds _textSpeed = new WaitForSeconds(0.05f);
@@ -98,6 +100,14 @@ public class NPC : Interactable
             if(_breakConversation)
             {
                 UIManager.Instance.UpdateDialogueText("");
+
+                if(_leftTalkingArea)
+                {
+                    UIManager.Instance.SetDialogueActivity(false);
+                    _leftTalkingArea = false;
+                    if(_currentLineIndex > 0) _currentLineIndex--;
+                }
+
                 _breakConversation = false;
                 _onConversation = false;
                 break;
@@ -131,9 +141,12 @@ public class NPC : Interactable
         }
     }
 
-    private void StopInteraction()
+    public void LeaveTalkingArea()
     {
-        _playerReading = false;
-        UIManager.Instance.UpdateDialogueText("");
+        if(_onConversation)
+        {
+            _breakConversation = true;
+            _leftTalkingArea = true;
+        }
     }
 }
