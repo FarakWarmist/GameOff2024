@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody _rb;
-    private Vector3 _movementVector;
+    [SerializeField] private Vector3 _movementVector;
     private bool _isGrounded;
     private bool _canMove = true;
     [SerializeField] private CapsuleCollider _playerCollider;
@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _gravity;
     [SerializeField] private float _maxFallingSpeed;
-    private float _maxFallingSpeedStairs = -1;
+    [SerializeField] private float _maxFallingSpeedStairs = -1;
     [SerializeField] private float _jumpForce;
     [SerializeField] private bool _canRun;
     [SerializeField] private float _runningSpeedMultiplier;
@@ -85,22 +85,33 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+        // if(_canMove)
+        // {
+        //     _isGroundedRay = GroundDetection();
+        //     DebugRaycasts();
+        //     CalculateMovement();
+        // }
+        // LookRotation();
+        // Debug.Log("Movement Vector: " + _movementVector + " | Grounded: " + _isGrounded);
+        GetInput();
+        LookRotation();
+    }
+
+    void FixedUpdate()
+    {
         if(_canMove)
         {
             _isGroundedRay = GroundDetection();
-            DebugRaycasts();
+
             CalculateMovement();
         }
-        LookRotation();
-        // Debug.Log("Movement Vector: " + _movementVector + " | Grounded: " + _isGrounded);
+        // LookRotation();
     }
 
-    private void CalculateMovement()
+    private void GetInput()
     {
-        _movementVector.x = Input.GetAxis("Horizontal") * _speed;
-        _movementVector.z = Input.GetAxis("Vertical") * _speed;
-
-        HeadBob();
+        // _movementVector.x = Input.GetAxis("Horizontal") * _speed;
+        // _movementVector.z = Input.GetAxis("Vertical") * _speed;
 
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -111,29 +122,39 @@ public class PlayerMovement : MonoBehaviour
         {
             _running = false;
         }
+    }
+
+    private void CalculateMovement()
+    {
+        _movementVector.x = Input.GetAxis("Horizontal") * _speed;
+        _movementVector.z = Input.GetAxis("Vertical") * _speed;
+
+        HeadBob();
+
+        // if(Input.GetKeyDown(KeyCode.LeftShift))
+        // {
+        //     _running = true;
+        // }
+        
+        // if(Input.GetKeyUp(KeyCode.LeftShift))
+        // {
+        //     _running = false;
+        // }
 
         if(_isGrounded && _isGroundedRay)
         {
-            if(Input.GetKeyDown(KeyCode.Space) && _isGrounded)
-            {
-                _movementVector.y = _jumpForce;
-            }
+            // if(Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+            // {
+            //     _movementVector.y = _jumpForce;
+            // }
 
             if(_running && _canRun && _stamina > 0)
             {
                 _movementVector.x *= _runningSpeedMultiplier;
                 _movementVector.z *= _runningSpeedMultiplier;
             }
-
-            if(_groundNormal.y < 0.95f)
-            {
-                _movementVector.y = _maxFallingSpeedStairs;
-            }
-
-            if(_groundNormal.y > 0.95f && _isGrounded)
-            {
-                _movementVector.y = 0;
-            }
+            
+            _movementVector.y = 0;
         }
         else
         {
@@ -143,15 +164,13 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                _movementVector.y -= _gravity * Time.deltaTime;
+                _movementVector.y -= _gravity;
             }
+
+            if(_groundNormal.y < 0.95f) _movementVector.y = _maxFallingSpeedStairs;
         }
-
-
-        if(_running && _canRun && _stamina > 0)
-            _movementVector *= Time.deltaTime * _runningSpeedMultiplier;
-        else
-            _movementVector *= Time.deltaTime;
+        
+        _movementVector *= Time.fixedDeltaTime;
             
         _rb.velocity = transform.TransformDirection(_movementVector);
         _rb.velocity.Normalize();
@@ -320,6 +339,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Debug.Log("Ground Detection: false | Time: " + Time.time);
+        _groundNormal.y = 1;
         return false;
     }
 
