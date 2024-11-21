@@ -10,6 +10,9 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private Inventory _inventory;
     [SerializeField] private TMP_Text _dialogueText;
     [SerializeField] private TMP_Text _timerText;
+    [SerializeField] private GameObject _winMenu;
+    [SerializeField] private GameObject _loseMenu;
+    [SerializeField] private GameObject[] _winLoseButtons = new GameObject[2];
     public void UpdateStaminaBar(float stamina, float maxStamina)
     {
         if(stamina == maxStamina)
@@ -36,4 +39,14 @@ public class UIManager : MonoSingleton<UIManager>
     public void SetDialogueActivity(bool value) => _dialogueText.transform.parent.gameObject.SetActive(value);
 
     public void UpdateTimerText(string text) => _timerText.text = text;
+
+    public void ActivateWinMenu() => _winMenu.SetActive(true);
+
+    public void ActivateLoseMenu() => _loseMenu.SetActive(true);
+
+    public void ActivateWinLoseButtons()
+    {
+        foreach(GameObject b in _winLoseButtons)
+            b.SetActive(true);
+    }
 }

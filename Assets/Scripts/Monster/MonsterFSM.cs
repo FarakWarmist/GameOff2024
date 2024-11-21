@@ -18,7 +18,7 @@ public class MonsterFSM : MonoBehaviour
     };
 
     [SerializeField] private MonsterState _currentMonsterState;
-    private bool _playerCaught;
+    public bool _playerCaught {get; private set;}
 
     //* IDLE VARIABLES
     [Header("IDLE")]
@@ -86,8 +86,15 @@ public class MonsterFSM : MonoBehaviour
 
     void Update()
     {
-        if(_playerCaught == false)
-            FSM();
+        if(GameManager.Instance.isGameOver == false)
+        {
+            if(_playerCaught == false)
+                FSM();
+        }
+        else
+        {
+            if(_navAgent.isStopped == false) _navAgent.isStopped = true;
+        }
     }
 
     private void FSM()
@@ -273,6 +280,7 @@ public class MonsterFSM : MonoBehaviour
     public void SetPlayerCaught(bool value)
     {
         _playerCaught = value;
+        GameManager.Instance.SetPlayerCaught(value);
         if(value == false)
         {
             _navAgent.SetDestination(transform.position);

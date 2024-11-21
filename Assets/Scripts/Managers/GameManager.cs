@@ -17,6 +17,8 @@ public class GameManager : MonoSingleton<GameManager>
     public int[] _safeBoxCode {get; private set;} = new int[3];
 
     public Vector3 monsterPosition {get; private set;}
+    public bool playerCaught {get; private set;}
+    public bool isGameOver {get; private set;}
 
     public void SetPlayerPosition(Vector3 pos) => playerPosition = pos;
 
@@ -46,6 +48,10 @@ public class GameManager : MonoSingleton<GameManager>
         playerMovementScr.enabled = false;
         playerInventoryScr.enabled = false;
         playerInteractionScr.enabled = false;
-        playerStayCenteredOnParentScr.SetStayCentered(true);
+        if(playerCaught)
+            playerStayCenteredOnParentScr.SetStayCentered(true);
     }
+
+    public void SetGameOver(bool value) => isGameOver = value;
+    public void SetPlayerCaught(bool value) => playerCaught = value;
 }
