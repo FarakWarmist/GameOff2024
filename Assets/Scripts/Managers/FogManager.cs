@@ -8,6 +8,9 @@ public class FogManager : MonoSingleton<FogManager>
     public const float normalFogDensity = 0.1f;
     private float _fogDensity;
     private float _interpolationSpeed = 0.5f;
+
+    void Start() => SetDensity(normalFogDensity);
+
     void Update()
     {
         if(RenderSettings.fogDensity != _fogDensity)
