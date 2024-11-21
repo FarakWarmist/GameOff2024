@@ -13,6 +13,42 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private GameObject _winMenu;
     [SerializeField] private GameObject _loseMenu;
     [SerializeField] private GameObject[] _winLoseButtons = new GameObject[2];
+    [Header("Crosshair")]
+    [SerializeField] private RectTransform _crosshairRectTransform;
+    [SerializeField] private float _crosshairNormalScale = 0.75f;
+    [SerializeField] private float _crosshairMaxScale = 1f;
+    [SerializeField] private float _crosshairInterpolationSpeed = 1.25f;
+    private bool _interactableOnRange;
+    private bool _collectableOnRange;
+
+    void Update()
+    {
+        if(_interactableOnRange || _collectableOnRange)
+        {
+            if(_crosshairRectTransform.localScale.x != _crosshairMaxScale)
+            {
+                float scale = _crosshairRectTransform.localScale.x;
+                scale += Time.deltaTime * _crosshairInterpolationSpeed;
+                if(scale >= _crosshairMaxScale)
+                    scale = _crosshairMaxScale;
+
+                _crosshairRectTransform.localScale = Vector3.one * scale;
+            }
+        }
+        else
+        {
+            if(_crosshairRectTransform.localScale.x != _crosshairNormalScale)
+            {
+                float scale = _crosshairRectTransform.localScale.x;
+                scale -= Time.deltaTime * _crosshairInterpolationSpeed;
+                if(scale <= _crosshairNormalScale)
+                    scale =_crosshairNormalScale;
+
+                _crosshairRectTransform.localScale = Vector3.one * scale;
+            }
+        }
+    }
+
     public void UpdateStaminaBar(float stamina, float maxStamina)
     {
         if(stamina == maxStamina)
@@ -49,4 +85,7 @@ public class UIManager : MonoSingleton<UIManager>
         foreach(GameObject b in _winLoseButtons)
             b.SetActive(true);
     }
+
+    public void SetCollectableOnRange(bool value) => _collectableOnRange = value;
+    public void SetInteractableOnRange(bool value) => _interactableOnRange = value;
 }

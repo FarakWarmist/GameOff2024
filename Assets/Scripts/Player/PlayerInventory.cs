@@ -19,28 +19,15 @@ public class PlayerInventory : MonoBehaviour
     {
         InitializeItemByItemIdDictionary();
 
-        Cursor.lockState = CursorLockMode.Locked;
         GameManager.Instance.SetPlayerInventoryScript(this);
     }
 
     void Update()
     {
         CheckForCollectables();
-        CursorLocking();
         ObjectPicking();
         MouseScroll();
         DropItem();
-    }
-
-    private void CursorLocking()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            if(Cursor.lockState == CursorLockMode.Locked)
-                Cursor.lockState = CursorLockMode.None;
-            else
-                Cursor.lockState = CursorLockMode.Locked;
-        }
     }
 
     private void ObjectPicking()
@@ -94,6 +81,8 @@ public class PlayerInventory : MonoBehaviour
         }
         else
             _objectOnRange = false;
+
+        UIManager.Instance.SetCollectableOnRange(_objectOnRange);
 
         if(_debug) DebugRay();
     }

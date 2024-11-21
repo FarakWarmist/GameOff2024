@@ -28,6 +28,16 @@ public class GameManager : MonoSingleton<GameManager>
     public void SetPlayerGameObject(GameObject gO) => playerGameObject = gO;
     public void SetPlayerStayCenteredScript(PlayerStayCenteredOnParent pSCOP) => playerStayCenteredOnParentScr = pSCOP;
 
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void Update()
+    {
+        CursorLocking();
+    }
+
     public void SetIsHiding(bool value)
     {
         isHiding = value;
@@ -54,4 +64,15 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void SetGameOver(bool value) => isGameOver = value;
     public void SetPlayerCaught(bool value) => playerCaught = value;
+
+    private void CursorLocking()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(Cursor.lockState == CursorLockMode.Locked)
+                Cursor.lockState = CursorLockMode.None;
+            else
+                Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
 }
