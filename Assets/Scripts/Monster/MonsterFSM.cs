@@ -195,7 +195,7 @@ public class MonsterFSM : MonoBehaviour
             {
                 _onInvestigationPoint = false;
                 _currentMonsterState = MonsterState.Idle;
-                Debug.Log("Stopped Investigating");
+                // Debug.Log("Stopped Investigating");
             }
         }
         else
@@ -204,7 +204,7 @@ public class MonsterFSM : MonoBehaviour
             // Debug.Log("Distance: " + distance);
             if(distance <= 2.5f)
             {
-                Debug.Log("On investigation point");
+                // Debug.Log("On investigation point");
                 _onInvestigationPoint = true;
                 _investigationTimer = Time.time + _investigationTime;
             }
@@ -215,7 +215,7 @@ public class MonsterFSM : MonoBehaviour
     {
         float distance = Vector3.Distance(position, transform.position);
 
-        Debug.Log("Noise Captured: " + noiseVol / distance);
+        // Debug.Log("Noise Captured: " + noiseVol / distance);
 
         if(noiseVol / distance >= _activateInvestigationTreshold)
         {
