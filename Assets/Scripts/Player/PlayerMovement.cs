@@ -97,8 +97,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void CalculateMovement()
     {
-        _movementVector.x = Input.GetAxis("Horizontal") * _speed * Time.deltaTime * 100;
-        _movementVector.z = Input.GetAxis("Vertical") * _speed * Time.deltaTime * 100;
+        _movementVector.x = Input.GetAxis("Horizontal") * _speed;
+        _movementVector.z = Input.GetAxis("Vertical") * _speed;
 
         HeadBob();
 
@@ -147,6 +147,12 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+
+        if(_running && _canRun && _stamina > 0)
+            _movementVector *= Time.deltaTime * _runningSpeedMultiplier;
+        else
+            _movementVector *= Time.deltaTime;
+            
         _rb.velocity = transform.TransformDirection(_movementVector);
         _rb.velocity.Normalize();
 
@@ -271,8 +277,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void LookRotation()
     {
-        _horizontalRot = Input.GetAxis("Mouse X") * _horizontalSensitivity * Time.deltaTime * 100;
-        _verticalRot -= Input.GetAxis("Mouse Y") * _verticalSensitivity * Time.deltaTime * 100;
+        _horizontalRot = Input.GetAxis("Mouse X") * _horizontalSensitivity * Time.deltaTime;
+        _verticalRot -= Input.GetAxis("Mouse Y") * _verticalSensitivity * Time.deltaTime;
 
         transform.Rotate(0, _horizontalRot, 0);
 

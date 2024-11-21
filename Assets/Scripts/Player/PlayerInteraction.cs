@@ -37,7 +37,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if(Physics.Raycast(rayChecker, out RaycastHit hit, Mathf.Infinity, _lM))
         {
-            Debug.Log("Distance: " + Vector3.Distance(Camera.main.transform.position, hit.point) + " | T: " + Time.time);
+            // Debug.Log("Distance: " + Vector3.Distance(Camera.main.transform.position, hit.point) + " | T: " + Time.time);
             if(Vector3.Distance(Camera.main.transform.position, hit.point) < _rangeForInteraction)
             {
                 _objectOnRange = true;

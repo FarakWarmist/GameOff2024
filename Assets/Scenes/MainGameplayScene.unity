@@ -30540,6 +30540,36 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2896259196228988021, guid: 6659fba984882e0468ac8bc67ad6937f,
+        type: 3}
+      propertyPath: field of view
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896259196228988021, guid: 6659fba984882e0468ac8bc67ad6937f,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3435638803642124245, guid: 6659fba984882e0468ac8bc67ad6937f,
+        type: 3}
+      propertyPath: _speed
+      value: 370
+      objectReference: {fileID: 0}
+    - target: {fileID: 3435638803642124245, guid: 6659fba984882e0468ac8bc67ad6937f,
+        type: 3}
+      propertyPath: _verticalSensitivity
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3435638803642124245, guid: 6659fba984882e0468ac8bc67ad6937f,
+        type: 3}
+      propertyPath: _horizontalSensitivity
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3435638803642124245, guid: 6659fba984882e0468ac8bc67ad6937f,
+        type: 3}
+      propertyPath: _runningSpeedMultiplier
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4198037551913066798, guid: 6659fba984882e0468ac8bc67ad6937f,
         type: 3}
       propertyPath: m_LocalPosition.x
