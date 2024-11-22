@@ -32,7 +32,7 @@ public class ItemSlot : MonoBehaviour
             if(itemData != null)
                 GameManager.Instance.playerInventoryScr.ToggleItem(true, itemData.itemId);
 
-            transform.localScale = Vector3.one * 1.05f;
+            transform.localScale = Vector3.one * 1.1f;
         }
         else
         {

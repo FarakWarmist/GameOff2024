@@ -133,6 +133,7 @@ public class Inventory : MonoSingleton<Inventory>
                         
                     _itemSlots[_selectedSlot].Selection(false);
                     _itemSlots[i].Selection(true);
+                    _selectedSlot = i;
                     Destroy(go);
                     return;
                 }
