@@ -30,7 +30,7 @@ public class Door : Interactable
             if(_openedRotationY < 2)
             {
                 float newOpenedRotation = 0;
-                if(transform.parent.transform.rotation.eulerAngles.y <= 1f)
+                if(transform.parent.transform.rotation.eulerAngles.y <= 2.5f)
                 {
                     transform.parent.transform.rotation = Quaternion.Euler(0, newOpenedRotation, 0);
                     _opening = false;
