@@ -6,6 +6,7 @@ using TMPro;
 
 public class UIManager : MonoSingleton<UIManager>
 {
+    [SerializeField] private bool _onMainMenu;
     [SerializeField] private Image _staminaBarImage;
     [SerializeField] private Inventory _inventory;
     [SerializeField] private TMP_Text _dialogueText;
@@ -23,6 +24,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     void Update()
     {
+        if(_onMainMenu) return;
+
         if(_interactableOnRange || _collectableOnRange)
         {
             if(_crosshairRectTransform.localScale.x != _crosshairMaxScale)
