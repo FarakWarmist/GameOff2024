@@ -29,7 +29,9 @@ public class ItemSpawner : MonoBehaviour
         SpawnKeys();
 
         int rand = Random.Range(0, _safeBoxSpawnPoints.Count);
-        Instantiate(_safeBox, _safeBoxSpawnPoints[rand].position, _safeBoxSpawnPoints[rand].rotation);
+        // Instantiate(_safeBox, _safeBoxSpawnPoints[rand].position, _safeBoxSpawnPoints[rand].rotation);
+        foreach(Transform t in _safeBoxSpawnPoints)
+            Instantiate(_safeBox, t.position, t.rotation);
 
         for(int i = 0; i < _specialItemSpawnPoints.Count; i++)
             Instantiate(_keyFragments[i], _specialItemSpawnPoints[i].position, Quaternion.identity);

@@ -7,30 +7,24 @@ public class TextureTiler : MonoBehaviour
     private MeshRenderer meshRendererHolder;
     private Vector2 _scaler;
     [SerializeField] Transform _wallsHolder;
-    [SerializeField] Transform _groundHolder;
-    [SerializeField] Transform _ceilingHolder;
     [SerializeField] Transform _wallsWithDoorsHolder;
 
     void Start()
     {
-        foreach(Transform t in _wallsHolder)
-        {
-            ScaleTexture(t);
-        }
-
-        foreach(Transform t in _groundHolder)
-            ScaleTexture(t);
-
-        foreach(Transform t in _ceilingHolder)
-            ScaleTexture(t);
-
-        foreach(Transform t in _wallsWithDoorsHolder)
-        {
-            for(int i = 1; i < 4; i++)
+        if(_wallsHolder != null)
+            foreach(Transform t in _wallsHolder)
             {
-                ScaleTexture(t.GetChild(i));
+                ScaleTexture(t);
             }
-        }
+
+        if(_wallsWithDoorsHolder != null)
+            foreach(Transform t in _wallsWithDoorsHolder)
+            {
+                for(int i = 1; i < 4; i++)
+                {
+                    ScaleTexture(t.GetChild(i));
+                }
+            }
     }
 
     private void ScaleTexture(Transform wallTransform)
@@ -51,6 +45,9 @@ public class TextureTiler : MonoBehaviour
         }
         else
             _scaler.y = 2;
+
+        _scaler.x /= 4;
+        _scaler.y /= 4;
 
         meshRendererHolder.material.mainTextureScale = _scaler;
     }

@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public class FogManager : MonoSingleton<FogManager>
 {
-    public const float normalFogDensity = 0.1f;
+    public const float normalFogDensity = 0.12f;
     private float _fogDensity;
     private float _interpolationSpeed = 0.5f;
 
