@@ -21872,14 +21872,14 @@ MonoBehaviour:
   _speed: 6
   _currentMonsterState: 0
   _idleTimeMin: 4
-  _idleTimeMax: 12
+  _idleTimeMax: 8
   _idleDistance: 3.5
-  _investigationTime: 5
+  _investigationTime: 4
   _activateInvestigationTreshold: 2
   _roamingPlacesObject: {fileID: 2144284299}
   _roamingPlaces: []
   _minTimeToRoam: 10
-  _maxTimeToRoam: 25
+  _maxTimeToRoam: 20
   _isRoaming: 0
   _seeingPlayer: 0
   _sawPlayerHiding: 0
