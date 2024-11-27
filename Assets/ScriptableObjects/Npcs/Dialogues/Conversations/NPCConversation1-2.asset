@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72c6a7a97e124b64593e0621860e5811, type: 3}
+  m_Name: NPCConversation1-2
+  m_EditorClassIdentifier: 
+  conversationLines:
+  - You also came here for an interview right ?
+  - That's their strategy to find new sacrifices for the monster here
+  - I was so close to escaping before, but the monster caught me, and I am lucky
+    I survived
+  - I know how to escape this place but I can't really move because of my previous
+    escape attempt
+  - You must find the keys, to open the locked doors, there you will find fragments
+    of the key that opens the door at the bottom, you will know what to do from there,
+    good luck
