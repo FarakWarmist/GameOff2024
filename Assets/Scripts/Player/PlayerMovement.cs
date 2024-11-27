@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _headBobYOffset = 1.25f;
     [SerializeField] private float _amplitudeYWalking = 0.1f;
     [SerializeField] private float _amplitudeYRunning = 0.2f;
+    [SerializeField] private float _interpolationTime = 0.025f;
     private Vector3 _cameraPosition;
     private float _startingCameraYPos;
     float index;
@@ -192,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
             if(Camera.main.transform.position.y != _normalCameraYPos)
             {
                 CameraSine();
-                if(Camera.main.transform.localPosition.y < (_normalCameraYPos + 0.025f) || Camera.main.transform.localPosition.y > (_normalCameraYPos - 0.025f))
+                if(Camera.main.transform.localPosition.y < (_normalCameraYPos + _interpolationTime) || Camera.main.transform.localPosition.y > (_normalCameraYPos - 0.025f))
                 {
                     Vector3 camPos = Camera.main.transform.localPosition;
                     camPos.y = _normalCameraYPos;
