@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 
 public class NPC : Interactable
 {
+    [SerializeField] private string _characterName = "";
     [SerializeField] private NPCDialogueData _npcDialogue;
     private int _currentConversationIndex = 0;
     private int _conversationIndexLimit;
@@ -18,7 +19,7 @@ public class NPC : Interactable
     private bool _leftTalkingArea;
     
     private List<char> _messageDecomposed = new List<char>();
-    private WaitForSeconds _textSpeed = new WaitForSeconds(0.05f);
+    private WaitForSeconds _textSpeed = new WaitForSeconds(0.0375f);
     private bool _playerReading;
 
     [Header("Item")]
@@ -99,7 +100,7 @@ public class NPC : Interactable
         {
             if(_breakConversation)
             {
-                UIManager.Instance.UpdateDialogueText("");
+                UIManager.Instance.UpdateDialogueText("", _characterName);
 
                 if(_leftTalkingArea)
                 {
@@ -118,11 +119,11 @@ public class NPC : Interactable
                 yield return _textSpeed;
                 string currentTextDisplayed = UIManager.Instance.GetCurrentDialogueText();
                 currentTextDisplayed += c;
-                UIManager.Instance.UpdateDialogueText(currentTextDisplayed);
+                UIManager.Instance.UpdateDialogueText(currentTextDisplayed, _characterName);
             }
             else
             {
-                UIManager.Instance.UpdateDialogueText("");
+                UIManager.Instance.UpdateDialogueText("", _characterName);
                 break;
             }
         }
@@ -132,7 +133,7 @@ public class NPC : Interactable
 
     private void LoadMessage(string message)
     {
-        UIManager.Instance.UpdateDialogueText("");
+        UIManager.Instance.UpdateDialogueText("", _characterName);
         _messageDecomposed.Clear();
 
         foreach(char c in message)

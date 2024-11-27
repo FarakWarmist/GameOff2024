@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.ComponentModel;
 
 public class UIManager : MonoSingleton<UIManager>
 {
@@ -10,6 +11,7 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private Image _staminaBarImage;
     [SerializeField] private Inventory _inventory;
     [SerializeField] private TMP_Text _dialogueText;
+    [SerializeField] private TMP_Text _characterNameText;
     [SerializeField] private TMP_Text _timerText;
     [SerializeField] private GameObject _winMenu;
     [SerializeField] private GameObject _loseMenu;
@@ -66,9 +68,11 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void ChangeSlot(bool up) => _inventory.ChangeSlot(up);
 
-    public void UpdateDialogueText(string text)
+    public void UpdateDialogueText(string text, string characterName)
     {
         if(_dialogueText.transform.parent.gameObject.activeSelf == false) SetDialogueActivity(true);
+
+        _characterNameText.text = characterName;
 
         _dialogueText.text = text;
     }
