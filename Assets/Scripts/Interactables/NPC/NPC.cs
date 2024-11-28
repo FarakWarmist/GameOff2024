@@ -19,7 +19,7 @@ public class NPC : Interactable
     private bool _leftTalkingArea;
     
     private List<char> _messageDecomposed = new List<char>();
-    private WaitForSeconds _textSpeed = new WaitForSeconds(0.0375f);
+    private WaitForSeconds _textSpeed = new WaitForSeconds(0.04f);
     private bool _playerReading;
 
     [Header("Item")]
@@ -120,6 +120,7 @@ public class NPC : Interactable
                 string currentTextDisplayed = UIManager.Instance.GetCurrentDialogueText();
                 currentTextDisplayed += c;
                 UIManager.Instance.UpdateDialogueText(currentTextDisplayed, _characterName);
+                AudioManager.Instance.PlaySFX("NPCTalk");
             }
             else
             {

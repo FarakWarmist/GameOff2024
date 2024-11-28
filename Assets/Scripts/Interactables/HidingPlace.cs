@@ -33,6 +33,8 @@ public class HidingPlace : Interactable
             pMS.SetPlayerColliderTrigger(true);
             _playerHiding = true;
             GameManager.Instance.SetIsHiding(true);
+
+            AudioManager.Instance.PlaySFX("Hide");
         }
     }
 
@@ -50,6 +52,7 @@ public class HidingPlace : Interactable
                     _playerHiding = false;
                     _positionInterpolated = false;
                     GameManager.Instance.SetIsHiding(false);
+                    AudioManager.Instance.PlaySFX("HideReversed");
                 }
             }
             else

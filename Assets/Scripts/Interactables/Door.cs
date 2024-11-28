@@ -89,12 +89,14 @@ public class Door : Interactable
                     Inventory.Instance.UpdateInventorySlot(slotIndex, null);
                     OpenOrClose();
                     _locked = false;
+                    AudioManager.Instance.PlaySFX("UnlockDoor");
                 }
             }
             else
             {
                 OpenOrClose();
                 NoiseManager.Instance.MakeNoise(_noiseWhenOpened, transform.position);
+                AudioManager.Instance.PlaySFX("OpenCloseDoor");
             }
         }
 

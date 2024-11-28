@@ -48,6 +48,7 @@ public class Inventory : MonoSingleton<Inventory>
     public void ChangeSlot(bool up)
     {
         _itemSlots[_selectedSlot].Selection(false);
+        int prevSelectedSlot = _selectedSlot;
 
         if(up)
         {
@@ -63,6 +64,11 @@ public class Inventory : MonoSingleton<Inventory>
         }
 
         _itemSlots[_selectedSlot].Selection(true);
+
+        if(_itemSlots[_selectedSlot].itemData != null || _itemSlots[prevSelectedSlot].itemData != null)
+        {
+            AudioManager.Instance.PlaySFX("HandleItem");
+        }
     }
 
     public void Collect(ItemData itemData, GameObject go)
@@ -93,6 +99,7 @@ public class Inventory : MonoSingleton<Inventory>
                 _itemSlots[_selectedSlot].AssignItemToSlot(itemData);
 
             Destroy(go);
+            AudioManager.Instance.PlaySFX("HandleItem");
         }
         else
         {
@@ -135,6 +142,7 @@ public class Inventory : MonoSingleton<Inventory>
                     _itemSlots[i].Selection(true);
                     _selectedSlot = i;
                     Destroy(go);
+                    AudioManager.Instance.PlaySFX("HandleItem");
                     return;
                 }
             }

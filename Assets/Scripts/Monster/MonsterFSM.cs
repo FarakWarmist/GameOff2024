@@ -26,6 +26,7 @@ public class MonsterFSM : MonoBehaviour
     [SerializeField] private float _idleTimeMax = 12f;
     [SerializeField] private float _idleDistance = 3.5f;
     private float _idleTimer;
+    private bool _canPlayDetectionSound = true;
 
     //*ROAMING VARIABLES
 
@@ -122,6 +123,12 @@ public class MonsterFSM : MonoBehaviour
 
         if(_seeingPlayer && _currentMonsterState != MonsterState.Chasing)
         {
+            if(_canPlayDetectionSound)
+            {
+                AudioManager.Instance.PlaySFX("Detection");
+                _canPlayDetectionSound = false;
+            }
+
             _currentMonsterState = MonsterState.Chasing;
             _hasGrace = false;
         }
@@ -202,6 +209,7 @@ public class MonsterFSM : MonoBehaviour
             {
                 _onInvestigationPoint = false;
                 _currentMonsterState = MonsterState.Idle;
+                _canPlayDetectionSound = true;
                 // Debug.Log("Stopped Investigating");
             }
         }
@@ -255,6 +263,7 @@ public class MonsterFSM : MonoBehaviour
                 {
                     _onSearchingPoint = false;
                     _currentMonsterState = MonsterState.Idle;
+                    _canPlayDetectionSound = true;
                 }
             }
             else
