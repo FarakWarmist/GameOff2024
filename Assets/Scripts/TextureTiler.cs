@@ -20,7 +20,7 @@ public class TextureTiler : MonoBehaviour
         if(_wallsWithDoorsHolder != null)
             foreach(Transform t in _wallsWithDoorsHolder)
             {
-                for(int i = 1; i < 4; i++)
+                for(int i = 1; i < t.childCount; i++)
                 {
                     ScaleTexture(t.GetChild(i));
                 }

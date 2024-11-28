@@ -32,11 +32,14 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("HEAD BOB")]
     [SerializeField] private float _normalCameraYPos = 0.45f;
-    [SerializeField] private float _omegaY = 5.0f;
+    [SerializeField] private float _omegaYWalking = 5.0f;
+    [SerializeField] private float _omegaYRunning = 6.5f;
     [SerializeField] private float _headBobYOffset = 1.25f;
     [SerializeField] private float _amplitudeYWalking = 0.1f;
     [SerializeField] private float _amplitudeYRunning = 0.2f;
     [SerializeField] private float _interpolationTime = 0.025f;
+    [SerializeField] private float _minCamYLocalPos = -0.55f;
+    private bool _madeStepSound;
     private Vector3 _cameraPosition;
     private float _startingCameraYPos;
     float index;
@@ -190,10 +193,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if(Camera.main.transform.position.y != _normalCameraYPos)
+            if(Camera.main.transform.localPosition.y != _normalCameraYPos)
             {
                 CameraSine();
-                if(Camera.main.transform.localPosition.y < (_normalCameraYPos + _interpolationTime) || Camera.main.transform.localPosition.y > (_normalCameraYPos - 0.025f))
+                if(Camera.main.transform.localPosition.y < (_normalCameraYPos + _interpolationTime) || Camera.main.transform.localPosition.y > (_normalCameraYPos - _interpolationTime))
                 {
                     Vector3 camPos = Camera.main.transform.localPosition;
                     camPos.y = _normalCameraYPos;
@@ -209,9 +212,9 @@ public class PlayerMovement : MonoBehaviour
 
         float y;
         if(_running)
-            y = Mathf.Abs (_amplitudeYRunning*Mathf.Sin (_omegaY*index));
+            y = Mathf.Abs (_amplitudeYRunning*Mathf.Sin (_omegaYRunning*index));
         else
-            y = Mathf.Abs (_amplitudeYWalking*Mathf.Sin (_omegaY*index));
+            y = Mathf.Abs (_amplitudeYWalking*Mathf.Sin (_omegaYWalking*index));
 
 
         y += (transform.position.y + _headBobYOffset);
@@ -219,6 +222,17 @@ public class PlayerMovement : MonoBehaviour
         _cameraPosition.x = transform.localPosition.x;
         _cameraPosition.z = transform.localPosition.z;
         Camera.main.transform.position = _cameraPosition;
+
+        Debug.Log("Local Cam Y: " + Camera.main.transform.localPosition.y + " | T: " + Time.time);
+
+        if(Camera.main.transform.localPosition.y < _minCamYLocalPos && _madeStepSound == false)
+        {
+            AudioManager.Instance.PlaySFX("Step");
+            _madeStepSound = true;
+        }
+        else if(_madeStepSound && Camera.main.transform.localPosition.y > _minCamYLocalPos)
+            _madeStepSound = false;
+
     }
 
     private void MakeNoise()
