@@ -7,4 +7,6 @@ public class SceneManager : MonoSingleton<SceneManager>
     public void ChangeSceneByIndex(int sceneIndex) => UnityEngine.SceneManagement.SceneManager.LoadScene(sceneIndex);
 
     public void RestartScene() => ChangeSceneByIndex(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+
+    public int GetBuildIndex() => UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
 }

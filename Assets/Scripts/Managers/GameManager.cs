@@ -30,7 +30,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        if(SceneManager.Instance.GetBuildIndex() != 0)
+            Cursor.lockState = CursorLockMode.Locked;
 
         DataContainer loadedData = SaveManager.Instance.Load();
         if(loadedData == null)
@@ -81,6 +82,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void CursorLocking()
     {
+        if(SceneManager.Instance.GetBuildIndex() == 0) return;
+
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(Cursor.lockState == CursorLockMode.Locked)

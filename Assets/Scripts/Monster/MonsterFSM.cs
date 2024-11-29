@@ -210,6 +210,7 @@ public class MonsterFSM : MonoBehaviour
                 _onInvestigationPoint = false;
                 _currentMonsterState = MonsterState.Idle;
                 _canPlayDetectionSound = true;
+                _animator.SetBool("Running", false);
                 // Debug.Log("Stopped Investigating");
             }
         }

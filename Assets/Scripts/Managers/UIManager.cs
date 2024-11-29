@@ -21,6 +21,8 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private float _crosshairNormalScale = 0.75f;
     [SerializeField] private float _crosshairMaxScale = 1f;
     [SerializeField] private float _crosshairInterpolationSpeed = 1.25f;
+    [SerializeField] private RectTransform _interactWithEMenu;
+    [SerializeField] private float _interactWithEInterpolationSpeed = 2.15f;
     private bool _interactableOnRange;
     private bool _collectableOnRange;
 
@@ -39,6 +41,19 @@ public class UIManager : MonoSingleton<UIManager>
 
                 _crosshairRectTransform.localScale = Vector3.one * scale;
             }
+
+            if(_interactWithEMenu.localScale.x != 1)
+            {
+                if(_interactWithEMenu.transform.gameObject.activeSelf == false) 
+                    _interactWithEMenu.transform.gameObject.SetActive(true);
+
+                float scale = _interactWithEMenu.localScale.x;
+                scale += Time.deltaTime * _interactWithEInterpolationSpeed;
+                if(scale >= 1)
+                    scale = 1;
+
+                _interactWithEMenu.localScale = Vector3.one * scale;
+            }
         }
         else
         {
@@ -50,6 +65,20 @@ public class UIManager : MonoSingleton<UIManager>
                     scale =_crosshairNormalScale;
 
                 _crosshairRectTransform.localScale = Vector3.one * scale;
+            }
+
+            if(_interactWithEMenu.transform.gameObject.activeSelf != false)
+            {
+                float scale = _interactWithEMenu.localScale.x;
+                scale -= Time.deltaTime * _interactWithEInterpolationSpeed;
+                if(scale <= 0)
+                {
+                    scale = 0;
+                    _interactWithEMenu.localScale = Vector3.one * scale;
+                    _interactWithEMenu.transform.gameObject.SetActive(false);
+                }
+
+                _interactWithEMenu.localScale = Vector3.one * scale;
             }
         }
     }
