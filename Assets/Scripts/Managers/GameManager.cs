@@ -31,6 +31,20 @@ public class GameManager : MonoSingleton<GameManager>
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        DataContainer loadedData = SaveManager.Instance.Load();
+        if(loadedData == null)
+        {
+            SaveManager.Instance.Save(0.5f, 0.5f, 0);
+        }
+        else
+        {
+            AudioManager.Instance.SetVolume("Music", loadedData.musicVolume);
+            AudioManager.Instance.SetVolume("Effects", loadedData.sEffectsVolume);
+            // Debug.Log("Do something with the data");
+
+            Debug.Log("Best Time: " + loadedData.bestTime);
+        }
     }
 
     void Update()

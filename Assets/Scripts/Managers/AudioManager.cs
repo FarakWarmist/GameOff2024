@@ -17,6 +17,9 @@ public class AudioManager : MonoSingleton<AudioManager>
     [SerializeField] private float _randomAmbianceMaxTime = 180;
     private float _randomAmbianceTimer;
 
+    private float _musicVolume = 0.5f;
+    private float _soundEffectsVolume = 0.5f;
+
     void Start()
     {
         InitializeSoundEffectsByName();
