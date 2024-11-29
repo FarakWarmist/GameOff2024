@@ -12753,7 +12753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &524952438
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29874,7 +29874,7 @@ MonoBehaviour:
   _crosshairMaxScale: 1
   _crosshairInterpolationSpeed: 2.5
   _interactWithEMenu: {fileID: 524952438}
-  _interactWithEInterpolationSpeed: 2.15
+  _interactWithEInterpolationSpeed: 5
 --- !u!1001 &1575928914
 PrefabInstance:
   m_ObjectHideFlags: 0
