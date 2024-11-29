@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,21 +20,33 @@ public class AudioManager : MonoSingleton<AudioManager>
 
     private float _musicVolume = 0.5f;
     private float _soundEffectsVolume = 0.5f;
+    public static event Action<float> OnMusicVolumeChanged;
+    public static event Action<float> OnSoundEffectsVolumeChanged;
 
     void Start()
     {
+        DataContainer loadedData = SaveManager.Instance.Load();
+        if(loadedData != null)
+        {
+            _musicVolume = loadedData.musicVolume;
+            _soundEffectsVolume = loadedData.sEffectsVolume;
+
+            _musicAudioSource.volume = _musicVolume;
+            _effectsAudioSource.volume = _soundEffectsVolume;
+        }
+
         InitializeSoundEffectsByName();
 
-        _randomAmbianceTimer = Time.time + Random.Range(_randomAmbianceMinTime, _randomAmbianceMaxTime);
+        _randomAmbianceTimer = Time.time + UnityEngine.Random.Range(_randomAmbianceMinTime, _randomAmbianceMaxTime);
     }
 
     void Update()
     {
         if(_randomAmbianceTimer <= Time.time)
         {
-            int rand = Random.Range(0, _randomAmbianceAudioClips.Length);
+            int rand = UnityEngine.Random.Range(0, _randomAmbianceAudioClips.Length);
             _effectsAudioSource.PlayOneShot(_randomAmbianceAudioClips[rand], 0.25f); //! Change this when the save system is done
-            _randomAmbianceTimer = Time.time + Random.Range(_randomAmbianceMinTime, _randomAmbianceMaxTime);
+            _randomAmbianceTimer = Time.time + UnityEngine.Random.Range(_randomAmbianceMinTime, _randomAmbianceMaxTime);
         }
     }
 
@@ -55,10 +68,14 @@ public class AudioManager : MonoSingleton<AudioManager>
         {
             case "Effects":
                 _effectsAudioSource.volume = volume;
+                _soundEffectsVolume = volume;
+                if(OnSoundEffectsVolumeChanged != null) OnSoundEffectsVolumeChanged(_soundEffectsVolume);
             break;
 
             case "Music":
                 _musicAudioSource.volume = volume;
+                _musicVolume = volume;
+                if(OnMusicVolumeChanged != null) OnMusicVolumeChanged(_musicVolume);
             break;
 
             default:
@@ -71,19 +88,19 @@ public class AudioManager : MonoSingleton<AudioManager>
     {
         if(audioClipName == "Step")
         {
-            int rand = Random.Range(0, _footStepsSoundEffects.Length);
+            int rand = UnityEngine.Random.Range(0, _footStepsSoundEffects.Length);
             return _footStepsSoundEffects[rand];
         }
 
         if(audioClipName == "MonsterStep")
         {
-            int rand = Random.Range(0, _monsterFootStepsSoundEffects.Length);
+            int rand = UnityEngine.Random.Range(0, _monsterFootStepsSoundEffects.Length);
             return _monsterFootStepsSoundEffects[rand];
         }
 
         if(audioClipName == "OpenCloseDoor")
         {
-            int rand = Random.Range(0, _openCloseDoorAudioClips.Length);
+            int rand = UnityEngine.Random.Range(0, _openCloseDoorAudioClips.Length);
             return _openCloseDoorAudioClips[rand];
         }
 

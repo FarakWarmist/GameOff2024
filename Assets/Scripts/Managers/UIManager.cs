@@ -16,6 +16,7 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private GameObject _winMenu;
     [SerializeField] private GameObject _loseMenu;
     [SerializeField] private GameObject[] _winLoseButtons = new GameObject[2];
+    [SerializeField] private GameObject _pauseMenu;
     [Header("Crosshair")]
     [SerializeField] private RectTransform _crosshairRectTransform;
     [SerializeField] private float _crosshairNormalScale = 0.75f;
@@ -30,6 +31,67 @@ public class UIManager : MonoSingleton<UIManager>
     {
         if(_onMainMenu) return;
 
+        CrosshairAndInteractWithEAnimations();
+    }
+
+    public void UpdateStaminaBar(float stamina, float maxStamina)
+    {
+        if(stamina == maxStamina)
+            _staminaBarImage.transform.parent.gameObject.SetActive(false);
+        else
+        {
+            _staminaBarImage.transform.parent.gameObject.SetActive(true);
+            _staminaBarImage.fillAmount = stamina / maxStamina;
+            // Debug.Log("Fill Amount: " + stamina / maxStamina);
+        }
+    }
+
+    public void ChangeSlot(bool up) => _inventory.ChangeSlot(up);
+
+    public void UpdateDialogueText(string text, string characterName)
+    {
+        if(_dialogueText.transform.parent.gameObject.activeSelf == false) SetDialogueActivity(true);
+
+        _characterNameText.text = characterName;
+
+        _dialogueText.text = text;
+    }
+
+    public string GetCurrentDialogueText() => _dialogueText.text;
+
+    public void SetDialogueActivity(bool value) => _dialogueText.transform.parent.gameObject.SetActive(value);
+
+    public void UpdateTimerText(string text) => _timerText.text = text;
+
+    public void ActivateWinMenu() => _winMenu.SetActive(true);
+
+    public void ActivateLoseMenu() => _loseMenu.SetActive(true);
+
+    public void ActivateWinLoseButtons()
+    {
+        foreach(GameObject b in _winLoseButtons)
+            b.SetActive(true);
+    }
+
+    public void SetCollectableOnRange(bool value) => _collectableOnRange = value;
+    public void SetInteractableOnRange(bool value) => _interactableOnRange = value;
+
+    public void TogglePause()
+    {
+        if(_pauseMenu.activeSelf == false)
+        {
+            _pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            _pauseMenu.SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
+
+    private void CrosshairAndInteractWithEAnimations()
+    {
         if(_interactableOnRange || _collectableOnRange)
         {
             if(_crosshairRectTransform.localScale.x != _crosshairMaxScale)
@@ -82,46 +144,4 @@ public class UIManager : MonoSingleton<UIManager>
             }
         }
     }
-
-    public void UpdateStaminaBar(float stamina, float maxStamina)
-    {
-        if(stamina == maxStamina)
-            _staminaBarImage.transform.parent.gameObject.SetActive(false);
-        else
-        {
-            _staminaBarImage.transform.parent.gameObject.SetActive(true);
-            _staminaBarImage.fillAmount = stamina / maxStamina;
-            // Debug.Log("Fill Amount: " + stamina / maxStamina);
-        }
-    }
-
-    public void ChangeSlot(bool up) => _inventory.ChangeSlot(up);
-
-    public void UpdateDialogueText(string text, string characterName)
-    {
-        if(_dialogueText.transform.parent.gameObject.activeSelf == false) SetDialogueActivity(true);
-
-        _characterNameText.text = characterName;
-
-        _dialogueText.text = text;
-    }
-
-    public string GetCurrentDialogueText() => _dialogueText.text;
-
-    public void SetDialogueActivity(bool value) => _dialogueText.transform.parent.gameObject.SetActive(value);
-
-    public void UpdateTimerText(string text) => _timerText.text = text;
-
-    public void ActivateWinMenu() => _winMenu.SetActive(true);
-
-    public void ActivateLoseMenu() => _loseMenu.SetActive(true);
-
-    public void ActivateWinLoseButtons()
-    {
-        foreach(GameObject b in _winLoseButtons)
-            b.SetActive(true);
-    }
-
-    public void SetCollectableOnRange(bool value) => _collectableOnRange = value;
-    public void SetInteractableOnRange(bool value) => _interactableOnRange = value;
 }

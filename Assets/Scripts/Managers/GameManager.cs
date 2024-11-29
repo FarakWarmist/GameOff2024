@@ -5,6 +5,8 @@ using System;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    private int buildIndex;
+
     public Vector3 playerPosition {get; private set;}
     public PlayerMovement playerMovementScr {get; private set;}
     public PlayerInventory playerInventoryScr {get; private set;}
@@ -30,7 +32,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     void Start()
     {
-        if(SceneManager.Instance.GetBuildIndex() != 0)
+        buildIndex = SceneManager.Instance.GetBuildIndex();
+        if(buildIndex != 0)
             Cursor.lockState = CursorLockMode.Locked;
 
         DataContainer loadedData = SaveManager.Instance.Load();
@@ -38,19 +41,14 @@ public class GameManager : MonoSingleton<GameManager>
         {
             SaveManager.Instance.Save(0.5f, 0.5f, 0);
         }
-        else
-        {
-            AudioManager.Instance.SetVolume("Music", loadedData.musicVolume);
-            AudioManager.Instance.SetVolume("Effects", loadedData.sEffectsVolume);
-            // Debug.Log("Do something with the data");
-
-            Debug.Log("Best Time: " + loadedData.bestTime);
-        }
     }
 
     void Update()
     {
         CursorLocking();
+
+        if(buildIndex != 0 && isGameOver == false)
+            EscapeToPause();
     }
 
     public void SetIsHiding(bool value)
@@ -90,6 +88,14 @@ public class GameManager : MonoSingleton<GameManager>
                 Cursor.lockState = CursorLockMode.None;
             else
                 Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    private void EscapeToPause()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            UIManager.Instance.TogglePause();
         }
     }
 }
