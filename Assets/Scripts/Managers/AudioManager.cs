@@ -9,6 +9,7 @@ public class AudioManager : MonoSingleton<AudioManager>
     [SerializeField] private AudioClip[] _soundEffects;
     private Dictionary<string, AudioClip> _soundsEffectsByName = new Dictionary<string, AudioClip>();
     [SerializeField] private AudioClip[] _footStepsSoundEffects;
+    [SerializeField] private AudioClip[] _monsterFootStepsSoundEffects;
     [SerializeField] private AudioClip[] _randomAmbianceAudioClips;
     [SerializeField] private AudioClip[] _openCloseDoorAudioClips;
 
@@ -63,12 +64,18 @@ public class AudioManager : MonoSingleton<AudioManager>
         }
     }
 
-    private AudioClip GetAudioClip(string audioClipName)
+    public AudioClip GetAudioClip(string audioClipName)
     {
         if(audioClipName == "Step")
         {
             int rand = Random.Range(0, _footStepsSoundEffects.Length);
             return _footStepsSoundEffects[rand];
+        }
+
+        if(audioClipName == "MonsterStep")
+        {
+            int rand = Random.Range(0, _monsterFootStepsSoundEffects.Length);
+            return _monsterFootStepsSoundEffects[rand];
         }
 
         if(audioClipName == "OpenCloseDoor")

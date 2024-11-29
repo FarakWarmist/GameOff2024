@@ -223,7 +223,7 @@ public class PlayerMovement : MonoBehaviour
         _cameraPosition.z = transform.localPosition.z;
         Camera.main.transform.position = _cameraPosition;
 
-        Debug.Log("Local Cam Y: " + Camera.main.transform.localPosition.y + " | T: " + Time.time);
+        // Debug.Log("Local Cam Y: " + Camera.main.transform.localPosition.y + " | T: " + Time.time);
 
         if(Camera.main.transform.localPosition.y < _minCamYLocalPos && _madeStepSound == false)
         {
