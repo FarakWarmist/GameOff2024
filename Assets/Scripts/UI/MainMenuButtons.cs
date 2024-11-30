@@ -11,6 +11,7 @@ public class MainMenuButtons : MonoBehaviour
     [SerializeField] private Button _settingsButton; 
     [SerializeField] private Button _quitButton;
     [SerializeField] private TMP_Text _recordTimeText;
+    [SerializeField] private GameObject _settingsMenu;
 
     void Start()
     {
@@ -43,7 +44,7 @@ public class MainMenuButtons : MonoBehaviour
 
     private void Settings()
     {
-        Debug.Log("Open Settings");
+        if(_settingsMenu.activeSelf == false) _settingsMenu.SetActive(true);
     }
 
     private void Quit()
