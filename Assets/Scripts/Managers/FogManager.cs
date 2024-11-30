@@ -9,7 +9,14 @@ public class FogManager : MonoSingleton<FogManager>
     private float _fogDensity;
     private float _interpolationSpeed = 0.5f;
 
-    void Start() => SetDensity(normalFogDensity);
+    void Start()
+    {
+        if(SceneManager.Instance.GetBuildIndex() == 1)
+            SetDensity(0);
+        else
+            SetDensity(normalFogDensity);
+    }
+    
 
     void Update()
     {
