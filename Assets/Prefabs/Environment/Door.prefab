@@ -222,6 +222,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorGameOff2024
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9df497b80a7c2ef47901e67872a9f399,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
