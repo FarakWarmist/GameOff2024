@@ -27,6 +27,8 @@ public class WinArea : MonoBehaviour
                 else
                     SaveManager.Instance.SaveBestTime(Timer.Instance.GetTime());
             }
+            else
+                SaveManager.Instance.Save(0.5f, 0.5f, Timer.Instance.GetTime());
         }
     }
 }

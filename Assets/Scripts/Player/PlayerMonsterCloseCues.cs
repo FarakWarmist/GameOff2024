@@ -42,7 +42,7 @@ public class PlayerMonsterCloseCues : MonoBehaviour
         float distance = Vector3.Distance(GameManager.Instance.playerPosition, GameManager.Instance.monsterPosition);
         float yDistance = Mathf.Abs(transform.position.y - GameManager.Instance.monsterPosition.y);
 
-        if(distance <= _startingFXChange && yDistance < 1)
+        if(distance <= _startingFXChange && yDistance < 2f)
         {
             float percentage = 1f - distance / _startingFXChange;
             percentage += 0.15f;

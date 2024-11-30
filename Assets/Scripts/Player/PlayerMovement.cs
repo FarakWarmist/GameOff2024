@@ -248,7 +248,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void StaminaHandler()
     {
-        if(_running)
+        bool isMoving = _movementVector.x != 0 || _movementVector.z != 0;
+
+        if(_running && isMoving)
         {
             _stamina -= _staminaSpentWhileRunning * Time.deltaTime;
             if(_stamina < 0) _stamina = 0;
