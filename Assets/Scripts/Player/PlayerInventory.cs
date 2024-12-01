@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+    private int buildIndex;
     [SerializeField] private Transform _droppingPoint;
     [SerializeField] private bool _objectOnRange;
     private GameObject _collectableGameobject;
@@ -18,16 +19,20 @@ public class PlayerInventory : MonoBehaviour
     void Start()
     {
         InitializeItemByItemIdDictionary();
+        buildIndex = SceneManager.Instance.GetBuildIndex();
 
         GameManager.Instance.SetPlayerInventoryScript(this);
     }
 
     void Update()
     {
-        CheckForCollectables();
-        ObjectPicking();
-        MouseScroll();
-        DropItem();
+        if(buildIndex == 2)
+        {
+            CheckForCollectables();
+            ObjectPicking();
+            MouseScroll();
+            DropItem();
+        }
     }
 
     private void ObjectPicking()

@@ -5,11 +5,13 @@ using UnityEngine;
 public class NPCTalkingArea : MonoBehaviour
 {
     private NPC nPCScr;
+    private NPCIntro nPCScrIntro;
 
     void Start()
     {
         nPCScr = transform.parent.transform.GetComponent<NPC>();
-        if(nPCScr == null) Debug.LogError("NPC Script is NULL");
+        if(nPCScr == null) nPCScrIntro = transform.parent.transform.GetComponent<NPCIntro>();
+        if(nPCScr == null && nPCScrIntro == null) Debug.LogError("NPC Script is NULL");
     }
 
     void OnTriggerExit(Collider other)
@@ -17,7 +19,10 @@ public class NPCTalkingArea : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             UIManager.Instance.SetDialogueActivity(false);
-            nPCScr.LeaveTalkingArea();
+            if(nPCScr != null)
+                nPCScr.LeaveTalkingArea();
+            else
+                nPCScrIntro.LeaveTalkingArea();
         }
     }
 }

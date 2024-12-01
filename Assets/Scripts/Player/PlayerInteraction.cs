@@ -26,7 +26,8 @@ public class PlayerInteraction : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.E))
             {
                 Interactable interactableScr = _interactableGameobject.GetComponent<Interactable>();
-                interactableScr.Interact(Inventory.Instance.GetSelectedItemId(), Inventory.Instance._selectedSlot);
+                if(interactableScr != null)
+                    interactableScr.Interact(Inventory.Instance.GetSelectedItemId(), Inventory.Instance._selectedSlot);
             }
         }
     }
