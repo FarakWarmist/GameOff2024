@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AudioManager : MonoSingleton<AudioManager>
 {
+    private int buildIndex;
     [SerializeField] private AudioSource _musicAudioSource;
     [SerializeField] private AudioSource _effectsAudioSource;
     [SerializeField] private AudioClip[] _soundEffects;
@@ -25,6 +26,8 @@ public class AudioManager : MonoSingleton<AudioManager>
 
     void Start()
     {
+        buildIndex = SceneManager.Instance.GetBuildIndex();
+
         DataContainer loadedData = SaveManager.Instance.Load();
         if(loadedData != null)
         {
@@ -42,6 +45,8 @@ public class AudioManager : MonoSingleton<AudioManager>
 
     void Update()
     {
+        if(buildIndex != 2) return;
+
         if(_randomAmbianceTimer <= Time.time)
         {
             int rand = UnityEngine.Random.Range(0, _randomAmbianceAudioClips.Length);
