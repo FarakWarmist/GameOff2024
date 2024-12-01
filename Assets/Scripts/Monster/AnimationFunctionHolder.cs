@@ -29,18 +29,24 @@ public class AnimationFunctionHolder : MonoBehaviour
     private float GetVolume()
     {
         float dist = Vector3.Distance(GameManager.Instance.playerPosition, GameManager.Instance.monsterPosition);
-        Debug.Log("Distance: " + dist + "| T: " + Time.time);
+        // Debug.Log("Distance: " + dist + "| T: " + Time.time);
         if(dist < _maxDistance)
         {
             if(dist < _minDistance)
             {
                 return 1;
             }
+            else if(dist > _maxDistance)
+            {
+                return 0;
+            }
             else
             {
                 float x = _maxDistance - _minDistance;
-                float res = dist / x;
-                return res * _effectsVolume * 0.9f;
+                float res = 1 - (dist / x);
+                res *= 1.175f;
+                if(res >= 1) res = 1;
+                return res * _effectsVolume;
             }
         }
         else return 0;

@@ -13,6 +13,7 @@ public class MonsterAudio : MonoBehaviour
         if(loadedData != null)
         {
             _audioSource.volume = loadedData.musicVolume;
+            ChangeSoundEffectsVolume(loadedData.sEffectsVolume);
         }
 
         AudioManager.OnMusicVolumeChanged += ChangeMusicVolume;

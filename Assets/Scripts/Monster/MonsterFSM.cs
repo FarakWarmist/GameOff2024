@@ -141,8 +141,13 @@ public class MonsterFSM : MonoBehaviour
         if(_roamingTimer <= Time.time && _isRoaming == false)
         {
             _isRoaming = true;
+
+            int rand = UnityEngine.Random.Range(0, 3);
             
-            _navAgent.SetDestination(_roamingPlaces[UnityEngine.Random.Range(0, _roamingPlaces.Count)].position);
+            if(rand > 0)
+                _navAgent.SetDestination(_roamingPlaces[UnityEngine.Random.Range(0, _roamingPlaces.Count)].position);
+            else
+                _navAgent.SetDestination(GameManager.Instance.playerPosition);
         }
 
         if(_isRoaming == false)
