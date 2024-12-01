@@ -79,6 +79,11 @@ public class PlayerMovement : MonoBehaviour
         GameManager.Instance.SetPlayerGameObject(this.gameObject);
     }
 
+    void OnDisable()
+    {
+        _rb.velocity = Vector3.zero;
+    }
+
     private void Initialize()
     {
         _rb = GetComponent<Rigidbody>();

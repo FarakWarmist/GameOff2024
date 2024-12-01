@@ -75,6 +75,8 @@ public class GameManager : MonoSingleton<GameManager>
             playerStayCenteredOnParentScr.SetStayCentered(true);
     }
 
+    public void DisablePlayerGO() => playerGameObject.SetActive(false);
+
     public void SetGameOver(bool value) => isGameOver = value;
     public void SetPlayerCaught(bool value) => playerCaught = value;
 

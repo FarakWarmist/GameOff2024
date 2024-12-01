@@ -9,4 +9,15 @@ public class SceneManager : MonoSingleton<SceneManager>
     public void RestartScene() => ChangeSceneByIndex(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 
     public int GetBuildIndex() => UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+
+    public void ChangeSceneWithDelay(float seconds, int index)
+    {
+        StartCoroutine(ChangeSceneWithDelayRoutine(seconds, index));
+    }
+
+    private IEnumerator ChangeSceneWithDelayRoutine(float seconds, int index)
+    {
+        yield return new WaitForSeconds(seconds);
+        ChangeSceneByIndex(index);
+    }
 }

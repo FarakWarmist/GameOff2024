@@ -17,6 +17,7 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private GameObject _loseMenu;
     [SerializeField] private GameObject[] _winLoseButtons = new GameObject[2];
     [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private BlackScreen _blackScreenScr; 
     [Header("Crosshair")]
     [SerializeField] private RectTransform _crosshairRectTransform;
     [SerializeField] private float _crosshairNormalScale = 0.75f;
@@ -144,4 +145,6 @@ public class UIManager : MonoSingleton<UIManager>
             }
         }
     }
+
+    public void FadeTo(bool fadeIn = true) => _blackScreenScr.FadeTo(fadeIn);
 }
