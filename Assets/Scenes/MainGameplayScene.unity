@@ -30595,6 +30595,9 @@ MonoBehaviour:
   - {fileID: 1201871686}
   _pauseMenu: {fileID: 186130885}
   _blackScreenScr: {fileID: 0}
+  _timerGO: {fileID: 1773326284}
+  _staminaBarGO: {fileID: 793395884}
+  _inventoryGo: {fileID: 788287561}
   _crosshairRectTransform: {fileID: 901086106}
   _crosshairNormalScale: 0.75
   _crosshairMaxScale: 1

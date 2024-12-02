@@ -107,12 +107,13 @@ public class DetectionArea : MonoBehaviour
         GameManager.Instance.DisablePlayer();
         GameManager.Instance.playerMovementScr.ResetCameraRotation();
         _monsterFSMScr.SetPlayerCaught(true);
-        //*Interpolate the player position to the player spot on the monster
+
         GameManager.Instance.playerGameObject.transform.parent = _playerPositionTransform;
         _interpolatePlayerTransform = true;
         _interpolationTime = 0;
-        //*Activate the monster attacking animation(eating the player)
+
+        UIManager.Instance.ToggleUI(false);
+
         _animator.SetTrigger("Attack");
-        //*Game over screen on animation finish
     }
 }

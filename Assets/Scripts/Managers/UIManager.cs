@@ -17,7 +17,11 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private GameObject _loseMenu;
     [SerializeField] private GameObject[] _winLoseButtons = new GameObject[2];
     [SerializeField] private GameObject _pauseMenu;
-    [SerializeField] private BlackScreen _blackScreenScr; 
+    [SerializeField] private BlackScreen _blackScreenScr;
+    [Header("Toggle UI")]
+    [SerializeField] private GameObject _timerGO;
+    [SerializeField] private GameObject _staminaBarGO;
+    [SerializeField] private GameObject _inventoryGo;
     [Header("Crosshair")]
     [SerializeField] private RectTransform _crosshairRectTransform;
     [SerializeField] private float _crosshairNormalScale = 0.75f;
@@ -89,6 +93,13 @@ public class UIManager : MonoSingleton<UIManager>
             _pauseMenu.SetActive(false);
             Time.timeScale = 1;
         }
+    }
+
+    public void ToggleUI(bool value)
+    {
+        _timerGO.SetActive(value);
+        _inventoryGo.SetActive(value);
+        _staminaBarGO.SetActive(value);
     }
 
     private void CrosshairAndInteractWithEAnimations()
