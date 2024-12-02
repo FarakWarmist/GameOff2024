@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
@@ -42,9 +43,9 @@ public class AnimationFunctionHolder : MonoBehaviour
             }
             else
             {
-                float x = _maxDistance - _minDistance;
-                float res = 1 - (dist / x);
-                res *= 1.175f;
+                float virtualMax = _maxDistance + _minDistance;
+                float res = 1 - (dist / virtualMax);
+                res += 0.12f;
                 if(res >= 1) res = 1;
                 return res * _effectsVolume;
             }

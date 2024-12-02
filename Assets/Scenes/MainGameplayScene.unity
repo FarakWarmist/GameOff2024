@@ -40585,7 +40585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxDistance: 16
-  _minDistance: 4
+  _minDistance: 2
 --- !u!23 &4629539043651437649
 MeshRenderer:
   m_ObjectHideFlags: 0
