@@ -31,6 +31,7 @@ public class PlayerInventory : MonoBehaviour
             CheckForCollectables();
             ObjectPicking();
             MouseScroll();
+            ChangeSlotWithNumbers();
             DropItem();
         }
     }
@@ -58,6 +59,34 @@ public class PlayerInventory : MonoBehaviour
         {
             // Debug.Log("Down | T: " + Time.time);
             UIManager.Instance.ChangeSlot(false);
+        }
+    }
+
+    private void ChangeSlotWithNumbers()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            UIManager.Instance.ChangeSlotWithIndex(0);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            UIManager.Instance.ChangeSlotWithIndex(1);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            UIManager.Instance.ChangeSlotWithIndex(2);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            UIManager.Instance.ChangeSlotWithIndex(3);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            UIManager.Instance.ChangeSlotWithIndex(4);
         }
     }
 

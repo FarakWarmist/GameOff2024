@@ -71,6 +71,23 @@ public class Inventory : MonoSingleton<Inventory>
         }
     }
 
+    public void ChangeSlotWithIndex(int index)
+    {
+        if(index == _selectedSlot) return;
+
+        _itemSlots[_selectedSlot].Selection(false);
+        int prevSelectedSlot = _selectedSlot;
+
+        _selectedSlot = index;
+
+        _itemSlots[_selectedSlot].Selection(true);
+
+        if(_itemSlots[_selectedSlot].itemData != null || _itemSlots[prevSelectedSlot].itemData != null)
+        {
+            AudioManager.Instance.PlaySFX("HandleItem");
+        }
+    }
+
     public void Collect(ItemData itemData, GameObject go)
     {
         if(_itemSlots[_selectedSlot].IsEmpty())

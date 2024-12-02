@@ -142,12 +142,18 @@ public class MonsterFSM : MonoBehaviour
         {
             _isRoaming = true;
 
-            int rand = UnityEngine.Random.Range(0, 3);
+            int rand = UnityEngine.Random.Range(0, 7);
             
             if(rand > 0)
                 _navAgent.SetDestination(_roamingPlaces[UnityEngine.Random.Range(0, _roamingPlaces.Count)].position);
             else
-                _navAgent.SetDestination(GameManager.Instance.playerPosition);
+            {
+                Debug.Log("Monster going to player pos");
+                Vector3 newPos = GameManager.Instance.playerPosition;
+                newPos.x += UnityEngine.Random.Range(-6f, 6f);
+                newPos.z += UnityEngine.Random.Range(-6f, 6f);
+                _navAgent.SetDestination(newPos);
+            }
         }
 
         if(_isRoaming == false)

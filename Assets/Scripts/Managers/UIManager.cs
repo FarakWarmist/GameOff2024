@@ -53,6 +53,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void ChangeSlot(bool up) => _inventory.ChangeSlot(up);
 
+    public void ChangeSlotWithIndex(int index) => _inventory.ChangeSlotWithIndex(index);
+
     public void UpdateDialogueText(string text, string characterName)
     {
         if(_dialogueText.transform.parent.gameObject.activeSelf == false) SetDialogueActivity(true);

@@ -182,10 +182,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8380157826906577798, guid: 0e9e2cafd3029b0428e101da3607228c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -7146521406498821007, guid: 0e9e2cafd3029b0428e101da3607228c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0e9e2cafd3029b0428e101da3607228c,
         type: 3}
       propertyPath: m_Name
       value: ExitKey
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0e9e2cafd3029b0428e101da3607228c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800250516343163423, guid: 0e9e2cafd3029b0428e101da3607228c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416272007918961125, guid: 0e9e2cafd3029b0428e101da3607228c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -312,7 +337,7 @@ Transform:
   m_GameObject: {fileID: 11721995}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.7969885, y: 2.0079997, z: 17.626}
+  m_LocalPosition: {x: -15.54, y: 2.319, z: 17.778}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2055,7 +2080,7 @@ GameObject:
   - component: {fileID: 130936263}
   - component: {fileID: 130936265}
   - component: {fileID: 130936264}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TorchParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7238,7 +7263,7 @@ GameObject:
   - component: {fileID: 175425271}
   - component: {fileID: 175425273}
   - component: {fileID: 175425272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Area Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9046,7 +9071,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 261267365}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Key2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9298,6 +9323,134 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270869620}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &280131171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 280131172}
+  - component: {fileID: 280131174}
+  - component: {fileID: 280131173}
+  m_Layer: 0
+  m_Name: ItemCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &280131172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280131171}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1640978288}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &280131173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280131171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 1
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
+--- !u!20 &280131174
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280131171}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.15
+  far clip plane: 1000
+  field of view: 90
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 256
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!4 &286839929 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2535971832110125421, guid: 93693cf02de15b9409ec8678819198cb,
@@ -9357,7 +9510,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 2
-  MaxDistance: 10
+  MaxDistance: 14
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -10311,6 +10464,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 20.872
       objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 21af022787eaef2459db0a5b3f2553fa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -2484921068739079471, guid: 21af022787eaef2459db0a5b3f2553fa,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -10350,6 +10508,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PocketWatch
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 21af022787eaef2459db0a5b3f2553fa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513859187771203891, guid: 21af022787eaef2459db0a5b3f2553fa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11719,6 +11887,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key4Fragment2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1b39859dcda224e4c8d98f6758148df7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11740,7 +11913,7 @@ GameObject:
   m_Component:
   - component: {fileID: 473188225}
   - component: {fileID: 473188226}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12596,6 +12769,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: daee70b3ebd268d49aa350f5920769d2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13395,7 +13573,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 551823283}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Key4Fragment3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14455,7 +14633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 600219193}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Key1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14471,7 +14649,7 @@ Transform:
   m_GameObject: {fileID: 600219192}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: -0.25, z: -0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15022,7 +15200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 678046286}
   - component: {fileID: 678046287}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ImageSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15105,7 +15283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 678783147}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Key4Fragment2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16911,10 +17089,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 3ced703422223fb41b1e3d19dacc29b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3ced703422223fb41b1e3d19dacc29b8,
         type: 3}
       propertyPath: m_Name
       value: Key1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3ced703422223fb41b1e3d19dacc29b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513859187771203891, guid: 3ced703422223fb41b1e3d19dacc29b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21091,7 +21284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1191137283}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lantern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22938,7 +23131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1348642612}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: KeyExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23192,8 +23385,8 @@ MonoBehaviour:
   _activateInvestigationTreshold: 2
   _roamingPlacesObject: {fileID: 2144284299}
   _roamingPlaces: []
-  _minTimeToRoam: 10
-  _maxTimeToRoam: 20
+  _minTimeToRoam: 8
+  _maxTimeToRoam: 9
   _isRoaming: 0
   _seeingPlayer: 0
   _sawPlayerHiding: 0
@@ -23425,6 +23618,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Key4Fragment1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 44f94434fc616314a96ce6e2607b7ca1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23981,7 +24179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1451895621}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PocketWatch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24365,7 +24563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1471506059}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Key4Fragment1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25146,6 +25344,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 70831d1bafcf8bc4db4f67c454c17857,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25219,6 +25422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Key4Fragment3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 36595827925eee64d8ea5582aaf09c5c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25321,7 +25529,7 @@ GameObject:
   - component: {fileID: 1555949991}
   - component: {fileID: 1555949993}
   - component: {fileID: 1555949992}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TorchParticles2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31520,10 +31728,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6733177361254619370, guid: ace3e982719ac6c489d56819dd09b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ace3e982719ac6c489d56819dd09b70e,
         type: 3}
       propertyPath: m_Name
       value: Key2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ace3e982719ac6c489d56819dd09b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700725330082129686, guid: ace3e982719ac6c489d56819dd09b70e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31800,6 +32023,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3c1c4132fa8a84f91c6118ae51e9b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1640978288 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4198037551913066798, guid: 6659fba984882e0468ac8bc67ad6937f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1685512262518908577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1641398856
 GameObject:
   m_ObjectHideFlags: 0
@@ -32557,6 +32786,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TorchModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3f72c7d7056606644805cf16ea4da2af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35444,7 +35678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1964470000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Key4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37906,7 +38140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2132705793}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Key3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38954,6 +39188,11 @@ PrefabInstance:
       propertyPath: m_BackGroundColor.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2896259196228988021, guid: 6659fba984882e0468ac8bc67ad6937f,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 247
+      objectReference: {fileID: 0}
     - target: {fileID: 3435638803642124245, guid: 6659fba984882e0468ac8bc67ad6937f,
         type: 3}
       propertyPath: _speed
@@ -39064,6 +39303,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4754662365433197620, guid: 6659fba984882e0468ac8bc67ad6937f,
+        type: 3}
+      propertyPath: m_Cameras.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4754662365433197620, guid: 6659fba984882e0468ac8bc67ad6937f,
+        type: 3}
+      propertyPath: m_Cameras.Array.data[0]
+      value: 
+      objectReference: {fileID: 280131174}
     - target: {fileID: 5754842079720365811, guid: 6659fba984882e0468ac8bc67ad6937f,
         type: 3}
       propertyPath: m_Name
@@ -39126,7 +39375,11 @@ PrefabInstance:
       objectReference: {fileID: 473188224}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4198037551913066798, guid: 6659fba984882e0468ac8bc67ad6937f,
+        type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 280131172}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5754842079720365811, guid: 6659fba984882e0468ac8bc67ad6937f,
         type: 3}
