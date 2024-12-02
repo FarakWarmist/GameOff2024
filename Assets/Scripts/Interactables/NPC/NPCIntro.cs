@@ -6,6 +6,7 @@ using System.Linq;
 
 public class NPCIntro : Interactable
 {
+    private string currentMessage;
     [SerializeField] private string _characterName = "";
     [SerializeField] private NPCDialogueData _npcDialogue;
     private int _currentConversationIndex = 0;
@@ -81,6 +82,8 @@ public class NPCIntro : Interactable
     
     private void Interaction(string message)
     {
+        currentMessage = message;
+
         _playerReading = true;
 
         LoadMessage(message);
@@ -96,7 +99,7 @@ public class NPCIntro : Interactable
         {
             if(_breakConversation)
             {
-                UIManager.Instance.UpdateDialogueText("", _characterName);
+                UIManager.Instance.UpdateDialogueText(currentMessage, _characterName);
 
                 if(_leftTalkingArea)
                 {
