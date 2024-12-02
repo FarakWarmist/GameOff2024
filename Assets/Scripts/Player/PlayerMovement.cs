@@ -104,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
         // Debug.Log("Movement Vector: " + _movementVector + " | Grounded: " + _isGrounded);
         GetInput();
         LookRotation();
+        StaminaHandler();
     }
 
     void FixedUpdate()
@@ -184,7 +185,6 @@ public class PlayerMovement : MonoBehaviour
         _rb.velocity = transform.TransformDirection(_movementVector);
         _rb.velocity.Normalize();
 
-        StaminaHandler();
         GameManager.Instance.SetPlayerPosition(transform.position);
 
         MakeNoise();
