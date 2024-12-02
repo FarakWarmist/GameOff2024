@@ -39,7 +39,7 @@ public class GameManager : MonoSingleton<GameManager>
         DataContainer loadedData = SaveManager.Instance.Load();
         if(loadedData == null)
         {
-            SaveManager.Instance.Save(0.5f, 0.5f, 0);
+            SaveManager.Instance.Save(0.5f, 0.5f, 0, 0.5f);
         }
     }
 

@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _running;
     [Header("CAMERA")]
     [SerializeField] private Camera _playerCamera;
+    const float maxSensitivity = 240;
     [SerializeField] private float _horizontalSensitivity;
     [SerializeField] private float _verticalSensitivity;
     [SerializeField] private float _minVerticalRot;
@@ -77,11 +78,27 @@ public class PlayerMovement : MonoBehaviour
 
         GameManager.Instance.SetPlayerMovementScript(this);
         GameManager.Instance.SetPlayerGameObject(this.gameObject);
+
+        DataContainer loadedData = SaveManager.Instance.Load();
+        if(loadedData != null)
+        {
+            _horizontalSensitivity = maxSensitivity * loadedData.mouseSensitivity;
+            _verticalSensitivity = _horizontalSensitivity;
+        }
+
+        SaveManager.OnMouseSensitivityChanged += ChangeMouseSensitivity;
     }
 
     void OnDisable()
     {
         _rb.velocity = Vector3.zero;
+        SaveManager.OnMouseSensitivityChanged -= ChangeMouseSensitivity;
+    }
+
+    private void ChangeMouseSensitivity(float value)
+    {
+        _horizontalSensitivity = maxSensitivity * value;
+        _verticalSensitivity = _horizontalSensitivity;
     }
 
     private void Initialize()

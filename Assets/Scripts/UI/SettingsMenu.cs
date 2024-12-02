@@ -7,6 +7,7 @@ public class SettingsMenu : MonoBehaviour
 {
     [SerializeField] private Slider _musicSlider;
     [SerializeField] private Slider _soundEffectsSlider;
+    [SerializeField] private Slider _mouseSensitivitySlider;
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Button _quitButton;
@@ -26,6 +27,7 @@ public class SettingsMenu : MonoBehaviour
         {
             _musicSlider.value = loadedData.musicVolume;
             _soundEffectsSlider.value = loadedData.sEffectsVolume;
+            _mouseSensitivitySlider.value = loadedData.mouseSensitivity;
         }
     }
 
@@ -39,6 +41,11 @@ public class SettingsMenu : MonoBehaviour
     {
         AudioManager.Instance.SetVolume("Effects", _soundEffectsSlider.value);
         SaveManager.Instance.Save(_soundEffectsSlider.value, "EFFECTS");
+    }
+
+    public void ChangeMouseSensitivity()
+    {
+        SaveManager.Instance.SaveMouseSensitivity(_mouseSensitivitySlider.value);
     }
 
     private void Restart()

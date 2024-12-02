@@ -4,10 +4,13 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.Rendering.PostProcessing;
+using System;
 
 public class SaveManager : MonoSingleton<SaveManager>
 {
-    public void Save(float musicVol, float effectsVol, float bestTime)
+    public static event Action<float> OnMouseSensitivityChanged;
+
+    public void Save(float musicVol, float effectsVol, float bestTime, float mouseSensitivity)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/save.datasave";
@@ -18,6 +21,7 @@ public class SaveManager : MonoSingleton<SaveManager>
         data.musicVolume = musicVol;
         data.sEffectsVolume = effectsVol;
         data.bestTime = bestTime;
+        data.mouseSensitivity = mouseSensitivity;
 
         formatter.Serialize(stream, data);
         stream.Close();
@@ -66,6 +70,25 @@ public class SaveManager : MonoSingleton<SaveManager>
         if(loadedData != null) data = loadedData;
 
         data.bestTime = time;
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    public void SaveMouseSensitivity(float sensitivity)
+    {
+        DataContainer loadedData = Load();
+        
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/save.datasave";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        DataContainer data = new DataContainer();
+
+        if(loadedData != null) data = loadedData;
+
+        data.mouseSensitivity = sensitivity;
+        if(OnMouseSensitivityChanged != null) OnMouseSensitivityChanged(sensitivity);
 
         formatter.Serialize(stream, data);
         stream.Close();
