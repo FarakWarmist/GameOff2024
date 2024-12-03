@@ -44,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _cameraPosition;
     private float _startingCameraYPos;
     float index;
+    [SerializeField] private float _normalYPosInterpolationTime;
+    private float _startTime;
+    private bool _isStartTimeSet;
 
     [Header("GROUND DETECTION")]
     [SerializeField] private float _rayOffsetCenter;
@@ -211,19 +214,32 @@ public class PlayerMovement : MonoBehaviour
     {
         if(_movementVector.x != 0 || _movementVector.z != 0)
         {
+            _isStartTimeSet = false;
             CameraSine();
         }
         else
         {
+            if(_isStartTimeSet == false)
+            {
+                _startTime = Time.time;
+                _isStartTimeSet = true;
+            }
+
             if(Camera.main.transform.localPosition.y != _normalCameraYPos)
             {
-                CameraSine();
-                if(Camera.main.transform.localPosition.y < (_normalCameraYPos + _interpolationTime) || Camera.main.transform.localPosition.y > (_normalCameraYPos - _interpolationTime))
-                {
-                    Vector3 camPos = Camera.main.transform.localPosition;
-                    camPos.y = _normalCameraYPos;
-                    Camera.main.transform.localPosition = camPos;
-                }
+                // Debug.Log("Cam Pos Y: " + Camera.main.transform.localPosition.y + " | Normal Cam Pos Y: " + _normalCameraYPos + " | T: " + Time.time);
+                // if(Camera.main.transform.localPosition.y < (_normalCameraYPos + 0.01f) || Camera.main.transform.localPosition.y > (_normalCameraYPos - 0.01f))
+                // {
+                //     Debug.Log("Snap | T: " + Time.time);
+                //     Vector3 camPos = Camera.main.transform.localPosition;
+                //     camPos.y = _normalCameraYPos;
+                //     Camera.main.transform.localPosition = camPos;
+                // }
+                float fracComplete = (Time.time - _startTime) / _normalYPosInterpolationTime;
+
+                Vector3 currentCamVector = Camera.main.transform.localPosition;
+                Vector3 normalVector = new Vector3(currentCamVector.x, _normalCameraYPos, currentCamVector.z);
+                Camera.main.transform.localPosition = Vector3.Slerp(currentCamVector, normalVector, fracComplete);
             }
         }
     }
