@@ -32,7 +32,7 @@ public class PlayerInventory : MonoBehaviour
             ObjectPicking();
             MouseScroll();
             ChangeSlotWithNumbers();
-            DropItem();
+            // DropItem();
         }
     }
 

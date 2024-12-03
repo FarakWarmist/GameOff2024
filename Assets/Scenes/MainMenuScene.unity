@@ -305,6 +305,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicSlider: {fileID: 1129718564}
   _soundEffectsSlider: {fileID: 929135766}
+  _mouseSensitivitySlider: {fileID: 0}
+  _musicValueText: {fileID: 0}
+  _soundEffectsValueText: {fileID: 0}
+  _mouseSensitivityValueText: {fileID: 0}
+  _restartButton: {fileID: 0}
+  _mainMenuButton: {fileID: 0}
+  _quitButton: {fileID: 0}
 --- !u!114 &188863275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1229,8 +1236,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289361303
-  m_fontColor: {r: 0.5921569, g: 0.45882353, b: 0.6666667, a: 1}
+    rgba: 4281926438
+  m_fontColor: {r: 0.14901961, g: 0.011764706, b: 0.22352941, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1387,7 +1394,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backgroundImage: {fileID: 490809348}
+  _mainMenuButtonImage: {fileID: 0}
+  _restartButtonImage: {fileID: 0}
+  _mainMenuButtonText: {fileID: 0}
+  _restartButtonText: {fileID: 0}
+  _menuSpecificText: {fileID: 0}
   _fadeInSpeed: 1.5
+  _buttonColor: {r: 0, g: 0, b: 0, a: 0}
+  _textColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &607316213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,8 +1468,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289361303
-  m_fontColor: {r: 0.5921569, g: 0.45882353, b: 0.6666667, a: 1}
+    rgba: 4281926438
+  m_fontColor: {r: 0.14901961, g: 0.011764706, b: 0.22352941, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1808,7 +1822,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backgroundImage: {fileID: 693647832}
+  _mainMenuButtonImage: {fileID: 0}
+  _restartButtonImage: {fileID: 0}
+  _mainMenuButtonText: {fileID: 0}
+  _restartButtonText: {fileID: 0}
+  _menuSpecificText: {fileID: 0}
   _fadeInSpeed: 1.5
+  _buttonColor: {r: 0, g: 0, b: 0, a: 0}
+  _textColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &712264719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1870,8 +1891,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: c73c2535f2424694da22511f9c52ef93, type: 3}
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1879,7 +1900,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &712264722
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2321,8 +2342,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289361303
-  m_fontColor: {r: 0.5921569, g: 0.45882353, b: 0.6666667, a: 1}
+    rgba: 4281926438
+  m_fontColor: {r: 0.14901961, g: 0.011764706, b: 0.22352941, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3524,6 +3545,10 @@ MonoBehaviour:
   - {fileID: 1490721111}
   - {fileID: 1201871686}
   _pauseMenu: {fileID: 0}
+  _blackScreenScr: {fileID: 0}
+  _timerGO: {fileID: 0}
+  _staminaBarGO: {fileID: 0}
+  _inventoryGo: {fileID: 0}
   _crosshairRectTransform: {fileID: 0}
   _crosshairNormalScale: 0.75
   _crosshairMaxScale: 1
