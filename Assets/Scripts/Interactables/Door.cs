@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Door : Interactable
 {
+    [SerializeField] private bool _isOpeningCellDoor;
     [SerializeField] private float _noiseWhenOpened = 6.5f;
     [SerializeField] private bool _locked;
     [SerializeField] private float _rotationSpeed = 90f;
@@ -94,6 +95,7 @@ public class Door : Interactable
             }
             else
             {
+                if(_isOpeningCellDoor) GameManager.Instance.SetPlayerOutsideCells();
                 OpenOrClose();
                 NoiseManager.Instance.MakeNoise(_noiseWhenOpened, transform.position);
                 AudioManager.Instance.PlaySFX("OpenCloseDoor");

@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+  m_AmbientSkyColor: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1.8
@@ -13242,6 +13242,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _locked
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7925317292122142824, guid: 98c782b20cd4fa4468fd57673a38fa1b,
+        type: 3}
+      propertyPath: _isOpeningCellDoor
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -39916,6 +39921,7 @@ MonoBehaviour:
   _amplitudeYRunning: 0.16
   _interpolationTime: 0
   _minCamYLocalPos: -0.55
+  _normalYPosInterpolationTime: 0
   _rayOffsetCenter: 0.5
   _rayOffsetY: -0.8
   _rayDistance: 0.6
@@ -40196,6 +40202,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _staminaSpentWhileRunning
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3435638803642124245, guid: 6659fba984882e0468ac8bc67ad6937f,
+        type: 3}
+      propertyPath: _normalYPosInterpolationTime
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4198037551913066798, guid: 6659fba984882e0468ac8bc67ad6937f,
         type: 3}
@@ -42862,6 +42873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a8825e9a9ebd24caa5174b5b74bc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isOpeningCellDoor: 0
   _noiseWhenOpened: 6.5
   _locked: 1
   _rotationSpeed: 160
@@ -43507,6 +43519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a8825e9a9ebd24caa5174b5b74bc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isOpeningCellDoor: 0
   _noiseWhenOpened: 6.5
   _locked: 1
   _rotationSpeed: 160

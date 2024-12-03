@@ -6,6 +6,7 @@ using System;
 public class GameManager : MonoSingleton<GameManager>
 {
     private int buildIndex;
+    public bool playerOutsideCells {get; private set;}
 
     public Vector3 playerPosition {get; private set;}
     public PlayerMovement playerMovementScr {get; private set;}
@@ -29,6 +30,8 @@ public class GameManager : MonoSingleton<GameManager>
     public void SetPlayerInteractionScript(PlayerInteraction pIS) => playerInteractionScr = pIS;
     public void SetPlayerGameObject(GameObject gO) => playerGameObject = gO;
     public void SetPlayerStayCenteredScript(PlayerStayCenteredOnParent pSCOP) => playerStayCenteredOnParentScr = pSCOP;
+
+    public void SetPlayerOutsideCells() => playerOutsideCells = true;
 
     void Start()
     {
