@@ -24180,7 +24180,7 @@ MonoBehaviour:
   _isRoaming: 0
   _seeingPlayer: 0
   _sawPlayerHiding: 0
-  _searchingTime: 10
+  _searchingTime: 4.5
   _graceTime: 4
 --- !u!114 &1389284423
 MonoBehaviour:
