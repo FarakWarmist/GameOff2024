@@ -144,7 +144,7 @@ public class MonsterFSM : MonoBehaviour
 
             int rand = UnityEngine.Random.Range(0, 7);
             
-            if(rand > 0 || GameManager.Instance.playerOutsideCells == false)
+            if(rand > 0 || GameManager.Instance.playerOnSafeArea)
                 _navAgent.SetDestination(_roamingPlaces[UnityEngine.Random.Range(0, _roamingPlaces.Count)].position);
             else
             {

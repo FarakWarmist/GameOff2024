@@ -6,7 +6,7 @@ using System;
 public class GameManager : MonoSingleton<GameManager>
 {
     private int buildIndex;
-    public bool playerOutsideCells {get; private set;}
+    public bool playerOnSafeArea {get; private set;} = true;
 
     public Vector3 playerPosition {get; private set;}
     public PlayerMovement playerMovementScr {get; private set;}
@@ -31,7 +31,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void SetPlayerGameObject(GameObject gO) => playerGameObject = gO;
     public void SetPlayerStayCenteredScript(PlayerStayCenteredOnParent pSCOP) => playerStayCenteredOnParentScr = pSCOP;
 
-    public void SetPlayerOutsideCells() => playerOutsideCells = true;
+    public void SetPlayerOnSafeArea(bool value) => playerOnSafeArea = value;
 
     void Start()
     {
