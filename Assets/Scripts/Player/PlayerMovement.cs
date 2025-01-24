@@ -239,7 +239,11 @@ public class PlayerMovement : MonoBehaviour
 
                 Vector3 currentCamVector = Camera.main.transform.localPosition;
                 Vector3 normalVector = new Vector3(currentCamVector.x, _normalCameraYPos, currentCamVector.z);
-                Camera.main.transform.localPosition = Vector3.Slerp(currentCamVector, normalVector, fracComplete);
+
+                if(fracComplete > 0.1f || fracComplete < 0.1f)
+                    Camera.main.transform.localPosition = Vector3.Slerp(currentCamVector, normalVector, fracComplete);
+
+                // Debug.Log("Frac: " + fracComplete + " | Cam Local Pos: " + Camera.main.transform.localPosition + " | T: " + Time.time);
             }
         }
     }
