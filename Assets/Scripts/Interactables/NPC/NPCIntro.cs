@@ -4,21 +4,41 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Linq;
 
+public class DialogueNode
+{
+    public string _dialogueText;
+    public DialogueNode next;
+
+    public DialogueNode(string text)
+    {
+        this._dialogueText = text;
+        this.next = null;
+    }
+}
+
 public class NPCIntro : Interactable
 {
     private string currentMessage;
     [SerializeField] private string _characterName = "";
-    [SerializeField] private NPCDialogueData _npcDialogue;
     private int _currentConversationIndex = 0;
     private int _conversationIndexLimit;
     private int _currentLineIndex = 0;
-    private int  _linesIndexLimit;
 
     private bool _breakConversation;
     private bool _onConversation;
     private bool _leftTalkingArea;
     private bool _firstConversationDone;
-    
+
+    [SerializeField] private string[] _dialogues;
+    [SerializeField] private string _dialogue1;
+    [SerializeField] private string _dialogue2;
+    [SerializeField] private string _dialogue3;
+    [SerializeField] private string _dialogue4;
+    [SerializeField] private string _dialogue5;
+
+    DialogueNode head;
+    DialogueNode nextNode;
+
     private List<char> _messageDecomposed = new List<char>();
     private WaitForSeconds _textSpeed = new WaitForSeconds(0.04f);
     private bool _playerReading;
@@ -33,7 +53,14 @@ public class NPCIntro : Interactable
 
     void Start()
     {
-        _conversationIndexLimit = _npcDialogue.conversations.Length;
+        _dialogue1 = Localization.GetString("npc_intro_1_dialogue_1");
+        _dialogue2 = Localization.GetString("npc_intro_1_dialogue_2");
+        _dialogue3 = Localization.GetString("npc_intro_1_dialogue_3");
+        _dialogue4 = Localization.GetString("npc_intro_2_dialogue_1");
+        _dialogue5 = Localization.GetString("npc_intro_2_dialogue_2");
+        _dialogues = new string[] { _dialogue1, _dialogue2, _dialogue3, _dialogue4, _dialogue5 };
+        _conversationIndexLimit = _dialogues.Length;
+        head = new DialogueNode("");
     }
 
     void Update()
@@ -44,18 +71,18 @@ public class NPCIntro : Interactable
         }
         else
             _animator.SetBool("Moving", false);
+
     }
 
     public override void Interact(int itemIndex, int slotIndex)
     {
-        _linesIndexLimit = _npcDialogue.conversations[_currentConversationIndex].conversationLines.Length;
-
         if(_onConversation == false)
         {
-            Interaction(_npcDialogue.conversations[_currentConversationIndex].conversationLines[_currentLineIndex]);
+            ShowDialogue();
+            Interaction(head._dialogueText);
 
             _currentLineIndex++;
-            if(_currentLineIndex >= _linesIndexLimit)
+            if(_currentLineIndex >= _conversationIndexLimit)
             {
                 _currentConversationIndex++;
                 if(_firstConversationDone == false)
@@ -149,5 +176,12 @@ public class NPCIntro : Interactable
             _breakConversation = true;
             _leftTalkingArea = true;
         }
+    }
+
+    void ShowDialogue()
+    {
+        nextNode = new DialogueNode(_dialogues[_currentLineIndex]);
+        head.next = nextNode;
+        head = head.next;
     }
 }
