@@ -10,14 +10,19 @@ public class NPC : Interactable
     private string currentMessage;
     [SerializeField] private string _characterName = "";
     [SerializeField] private NPCDialogueData _npcDialogue;
+    [SerializeField] private string[] _dialogues;
     private int _currentConversationIndex = 0;
     private int _conversationIndexLimit;
     private int _currentLineIndex = 0;
-    private int  _linesIndexLimit;
 
     private bool _breakConversation;
     private bool _onConversation;
     private bool _leftTalkingArea;
+
+    [SerializeField] private string _dialogue1;
+    [SerializeField] private string _dialogue2;
+    [SerializeField] private string _dialogue3;
+    [SerializeField] private string _dialogue4;
     
     private List<char> _messageDecomposed = new List<char>();
     private WaitForSeconds _textSpeed = new WaitForSeconds(0.04f);
@@ -33,7 +38,12 @@ public class NPC : Interactable
 
     void Start()
     {
-        _conversationIndexLimit = _npcDialogue.conversations.Length;
+        _dialogue1 = Localization.GetString("npc_1_dialogue_1");
+        _dialogue2 = Localization.GetString("npc_1_dialogue_2");
+        _dialogue3 = Localization.GetString("npc_1_dialogue_3");
+        _dialogue4 = Localization.GetString("npc_1_dialogue_4");
+        _dialogues = new string[] {_dialogue1, _dialogue2, _dialogue3, _dialogue4};
+        _conversationIndexLimit = _dialogues.Length;
     }
 
     public override void Interact(int itemIndex, int slotIndex)
@@ -51,12 +61,10 @@ public class NPC : Interactable
             _gotItem = true;
         }
 
-        _linesIndexLimit = _npcDialogue.conversations[_currentConversationIndex].conversationLines.Length;
-
         if(_onConversation == false)
         {
             if(_gotItem == false)
-                Interaction(_npcDialogue.conversations[_currentConversationIndex].conversationLines[_currentLineIndex]);
+                Interaction(_dialogues[_currentLineIndex]);
             else
             {
                 Interaction(_itemMessage);
@@ -64,7 +72,7 @@ public class NPC : Interactable
             }
 
             _currentLineIndex++;
-            if(_currentLineIndex >= _linesIndexLimit)
+            if (_currentLineIndex >= _conversationIndexLimit)
             {
                 if(_needItem == false)
                 {

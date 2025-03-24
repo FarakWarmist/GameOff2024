@@ -3,3 +3,12 @@ play_button	Play button text	Play	Jouer
 settings_button	Settings button text	Settings	Paramètres
 quit_button	Quit button text	Quit	Quitter
 record_time	Record time	Record Time:	Temps Record:
+npc_intro_1_dialogue_1	Intro NPC dialogue1 part 1	Ready for your interview ?	Prêt pour votre interview ?
+npc_intro_1_dialogue_2	Intro NPC dialogue1 part 2	Give me a moment to get things prepared	Donnez-moi un moment pour que tout soit prêt
+npc_intro_1_dialogue_3	Intro NPC dialogue1 part 3	Feel free to wander around a little	N'hésitez pas à vous promener un peu
+npc_intro_2_dialogue_1	Intro NPC dialogue2 part 1	I am getting things prepared for the interview	Je suis en train de tout préparer pour l'entretien
+npc_intro_2_dialogue_2	Intro NPC dialogue2 part 2	I'll take my time, so wander a little if you want	Je vais prendre mon temps, alors promenez-vous un peu voulez-vous
+npc_1_dialogue_1	First NPC dialogue part 1	I used to be part of the cult to this monster but when I saw the people being eaten I tried to leave	Je faisais avant partie du culte de ce monstre, mais quand j'ai vu les gens se faire manger, j'ai essayé de partir
+npc_1_dialogue_2	First NPC dialogue part 2	After they knew I wanted to leave they dragged me here to be sacrificed to the monster	Après avoir su que je voulais partir, ils m'ont traîné ici pour être sacrifié au monstre
+npc_1_dialogue_3	First NPC dialogue part 3	I lost my pocket watch when I got dragged here, it super important for me, and if I am dying I atleast want to have it with me	J'ai perdu ma montre de poche quand j'ai été traîné ici, c'est super important pour moi, et si je suis en train de mourir, je veux au moins l'avoir avec moi
+npc_1_dialogue_4	First NPC dialogue part 4	If you can get me my pocket watch I will give you the code for the safe box	Si tu peux me donner ma montre de poche, je te donnerai le code du coffre-fort
