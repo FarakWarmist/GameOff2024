@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using TimeFormatterUtil;
+using System.IO;
 
 public class MainMenuButtons : MonoBehaviour
 {
@@ -13,10 +14,18 @@ public class MainMenuButtons : MonoBehaviour
     [SerializeField] private TMP_Text _recordTimeText;
     [SerializeField] private GameObject _settingsMenu;
 
+    [SerializeField] private TMP_Text _playButtonText;
+    [SerializeField] private TMP_Text _settingsButtonText;
+    [SerializeField] private TMP_Text _quitButtonText;
+
     void Start()
     {
         DataContainer loadedData = SaveManager.Instance.Load();
-        if(loadedData != null)
+
+        _playButtonText.text = Localization.GetString("play_button");
+        _settingsButtonText.text = Localization.GetString("settings_button");
+        _quitButtonText.text = Localization.GetString("quit_button");
+        if (loadedData != null)
         {
             if(loadedData.bestTime == 0)
             {
@@ -24,7 +33,7 @@ public class MainMenuButtons : MonoBehaviour
             }
             else
             {
-                _recordTimeText.text = "Record Time: " + TimeFormatter.GetTextFromTime(loadedData.bestTime);
+                _recordTimeText.text = Localization.GetString("record_time") + " " + TimeFormatter.GetTextFromTime(loadedData.bestTime);
             }
         }
 
