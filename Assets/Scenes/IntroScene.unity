@@ -2479,7 +2479,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backgroundImage: {fileID: 490809348}
+  _mainMenuButtonImage: {fileID: 0}
+  _restartButtonImage: {fileID: 0}
+  _mainMenuButtonText: {fileID: 0}
+  _restartButtonText: {fileID: 0}
+  _menuSpecificText: {fileID: 0}
   _fadeInSpeed: 1.5
+  _buttonColor: {r: 0, g: 0, b: 0, a: 0}
+  _textColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &509712231
 GameObject:
   m_ObjectHideFlags: 0
@@ -3646,7 +3653,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backgroundImage: {fileID: 693647832}
+  _mainMenuButtonImage: {fileID: 0}
+  _restartButtonImage: {fileID: 0}
+  _mainMenuButtonText: {fileID: 0}
+  _restartButtonText: {fileID: 0}
+  _menuSpecificText: {fileID: 0}
   _fadeInSpeed: 1.5
+  _buttonColor: {r: 0, g: 0, b: 0, a: 0}
+  _textColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &698151415
 GameObject:
   m_ObjectHideFlags: 0
@@ -5227,7 +5241,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterName: Kongar
-  _npcDialogue: {fileID: 11400000, guid: 9fc1a1d07e6f15649ad7499fe1734080, type: 2}
+  _dialogues: []
+  _dialogue1: 
+  _dialogue2: 
+  _dialogue3: 
+  _dialogue4: 
+  _dialogue5: 
   _navAgent: {fileID: 944034812}
   _printerPosition: {fileID: 1479249052}
   _characterModel: {fileID: 856847187}
